@@ -27,7 +27,7 @@ INIT_STATEMENTS = [
             team_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
-            is_available BOOLEAN DEFAULT TRUE,
+            is_available BOOLEAN DEFAULT TRUE
         )""",
     
     """CREATE TABLE IF NOT EXISTS Player(
