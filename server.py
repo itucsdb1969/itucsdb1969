@@ -51,7 +51,8 @@ def register_page():
         cursor.execute(statement, (username,password))
         connection.commit()
         cursor.close()
-    return render_template("home.html")
+        return render_template("home.html")
+    return render_template("register.html")
 
 @app.route("/players")
 def all_players_page():
