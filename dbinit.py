@@ -4,18 +4,17 @@ import sys
 import psycopg2 as dbapi2
 
 DROP_STATEMENTS = [
-    "DROP TABLE IF EXISTS User cascade",
+    "DROP TABLE IF EXISTS Users cascade",
     "DROP TABLE IF EXISTS Player cascade",
     "DROP TABLE IF EXISTS Team cascade",
     "DROP TABLE IF EXISTS Match cascade",
     "DROP TABLE IF EXISTS Stadium cascade",
     "DROP TABLE IF EXISTS Appointment cascade",
-    "DROP TABLE IF EXISTS users",
 ]
 
 INIT_STATEMENTS = [
 
-    """CREATE TABLE IF NOT EXISTS User(
+    """CREATE TABLE IF NOT EXISTS Users(
             user_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(20) UNIQUE,
             password VARCHAR(64),
