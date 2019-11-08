@@ -21,7 +21,15 @@ INIT_STATEMENTS = [
             is_active BOOLEAN DEFAULT TRUE,
             is_admin BOOLEAN DEFAULT FALSE
         )""",
-
+    
+    """
+    CREATE TABLE IF NOT EXISTS Team(
+            team_id SERIAL NOT NULL PRIMARY KEY,
+            name VARCHAR (50) NOT NULL,
+            rating NUMERIC(3,2),
+            is_available BOOLEAN DEFAULT TRUE,
+        )""",
+    
     """CREATE TABLE IF NOT EXISTS Player(
             player_id SERIAL NOT NULL PRIMARY KEY,
             team_id INTEGER,
@@ -30,16 +38,8 @@ INIT_STATEMENTS = [
             age INTEGER,
             FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
-
     """
-    CREATE TABLE IF NOT EXISTS Team(
-            team_id SERIAL NOT NULL PRIMARY KEY,
-            name VARCHAR (50) NOT NULL,
-            rating NUMERIC(3,2),
-            is_available BOOLEAN DEFAULT TRUE,
-        )""",
-
-    """
+    
     CREATE TABLE IF NOT EXISTS Match(
             match_id SERIAL NOT NULL PRIMARY KEY,
             team1_id INTEGER,
