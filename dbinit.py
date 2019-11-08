@@ -31,7 +31,6 @@ INIT_STATEMENTS = [
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             age INTEGER,
-            PRIMARY KEY (player_id),
             FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
 
@@ -43,7 +42,6 @@ INIT_STATEMENTS = [
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             is_available BOOLEAN DEFAULT TRUE,
-            PRIMARY KEY (team_id),
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
 
@@ -53,7 +51,6 @@ INIT_STATEMENTS = [
             match_id SERIAL NOT NULL PRIMARY KEY,
             team1_id INTEGER,
             team2_id INTEGER,
-            PRIMARY KEY (match_id),
             FOREIGN KEY (team1_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE ,
             FOREIGN KEY (team2_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
