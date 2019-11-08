@@ -3,7 +3,7 @@ from flask import render_template
 import psycopg2 as dbapi2
 from forms import LoginForm, RegisterForm
 app = Flask(__name__)
-
+from db.get_user_table import get_users_db
 result = []
 @app.route("/")
 def index():
@@ -28,26 +28,36 @@ def login():
             for res in result:
                 print(res[0])
             cursor.close()
+            printed = get_users_db()
+            print(printed)
             if(password_form == res[0]):
                 return render_template("home.html")
             else:
                 return render_template("login.html")            
     return render_template("login.html", messages = result)
-@app.route("/register")
+
+@app.route("/register", methods=['POST', 'GET'])
 def register_page():
-    return render_template("register.html")
+    print("sa")
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        print(username, password)
+        url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+        connection = dbapi2.connect(url)
+        cursor = connection.cursor()
+        #aynı username var mı yok mu denenecek şimdilik 2 aynı username açabiliyor.
+        statement = """insert into users(name, password, is_active, is_admin) values(%s , %s , true , false);"""
+        cursor.execute(statement, (username,password))
+        connection.commit()
+        cursor.close()
+    return render_template("home.html")
 
 @app.route("/players")
 def all_players_page():
     return render_template("players.html")    
 @app.route("/teams")
 def all_teams_page():
-    url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
-    with dbapi2.connect(url) as connection: 
-        cursor = connection.cursor()
-        statement = """insert into users(name, password, is_active, is_admin) values('mehmet4' , 'mehmet' , true , false);"""
-        cursor.execute(statement)
-        cursor.close()
     return render_template("teams.html")
 if __name__ == "__main__":
     app.run(debug=True) 

@@ -1,10 +1,22 @@
 {% extends "layout.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Register{% endblock %}
 {% block content %}
 
-<p>
-    sa
-</p>
+<form method="POST" action="">
+    <div class="form-group w-50">
+        <label class="bg-dark w-50 rounded text-white"><b>Username</b></label>
+        <input type="text" name="username" class="form-control" value={{request.form.username}}>
+      </div>
+    <div class="form-group w-50">
+        <label class="bg-dark w-50 rounded text-white"><b>Password</b></label>
+        <input type="password" name="password" class="form-control" value={{request.form.password}}>
+    </div>
+    <div class="form-group w-50">
+        <label class="bg-dark w-50 rounded text-white"><b>Password</b></label>
+        <input type="password" name="confirm-password" class="form-control">
+    </div>
+    <p><input type="submit" class="btn btn-primary" value="Register"></p>
+  </form>
 
 
 {% endblock %}
