@@ -36,6 +36,13 @@ def login():
                 return render_template("login.html")            
     return render_template("login.html", messages = result)
 
+def get_db_url():
+    url = os.getenv("DATABASE_URL")
+    if url is None:
+        print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
+        sys.exit(1)
+    return url
+
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
     print("sa")
@@ -43,7 +50,7 @@ def register_page():
         username = request.form['username']
         password = request.form['password']
         # print(username, password)
-        url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+        url = get_db_url() #"dbname='postgres' user='postgres' host='localhost' password='123456'"
         connection = dbapi2.connect(url)
         cursor = connection.cursor()
         statement = """insert into users(name, password, is_active, is_admin) values(%s , %s , true , false);"""
