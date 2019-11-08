@@ -34,11 +34,9 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Team(
             team_id SERIAL NOT NULL PRIMARY KEY,
-            match_id INTEGER,
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             is_available BOOLEAN DEFAULT TRUE,
-            FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
 
     """
