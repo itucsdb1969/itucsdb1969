@@ -1,6 +1,8 @@
 from flask import Flask, request,flash
 from flask import render_template
 import psycopg2 as dbapi2
+import os
+import sys
 from forms import LoginForm, RegisterForm
 app = Flask(__name__)
 from db.get_user_table import get_users_db
