@@ -1,7 +1,6 @@
 from flask import Flask, request
 from flask import render_template
 import psycopg2 as dbapi2
-import requests
 
 app = Flask(__name__)
 
