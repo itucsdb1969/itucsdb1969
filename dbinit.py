@@ -9,7 +9,7 @@ DROP_STATEMENTS = [
     "DROP TABLE IF EXISTS Team cascade",
     "DROP TABLE IF EXISTS Match cascade",
     "DROP TABLE IF EXISTS Stadium cascade",
-    "DROP TABLE IF EXISTS Appointment cascade",
+    "DROP TABLE IF EXISTS Appointment cascade"
 ]
 
 INIT_STATEMENTS = [
