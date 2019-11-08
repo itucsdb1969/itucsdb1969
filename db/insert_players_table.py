@@ -1,11 +1,10 @@
-import os
-import sys
 import psycopg2 as dbapi2
+import db.get_db_url as db_url
 
 
 def insert_players_db(player):
     query = "INSERT INTO PLAYERS (NAME, GENRE, DURATION_IN_SECONDS, SINGER, YEAR) VALUES(%s, %s, %s, %s, %s)"
-    url = insert_players_db()
+    url = db_url.get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query, (player.name, player.team_id, player.rating,
