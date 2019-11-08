@@ -70,9 +70,7 @@ INIT_STATEMENTS = [
             start_time VARCHAR (5) NOT NULL ,
             end_time VARCHAR (5) NOT NULL ,
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE RESTRICT ON UPDATE CASCADE ,
-            FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE RESTRICT ON UPDATE CASCADE
-    
-    
+            FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE RESTRICT ON UPDATE CASCADE   
         )""",
 ]
 
