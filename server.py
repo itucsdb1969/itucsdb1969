@@ -42,11 +42,10 @@ def register_page():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        print(username, password)
+        # print(username, password)
         url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
         connection = dbapi2.connect(url)
         cursor = connection.cursor()
-        #aynı username var mı yok mu denenecek şimdilik 2 aynı username açabiliyor.
         statement = """insert into users(name, password, is_active, is_admin) values(%s , %s , true , false);"""
         cursor.execute(statement, (username,password))
         connection.commit()
