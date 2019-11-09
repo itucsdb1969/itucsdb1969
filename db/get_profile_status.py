@@ -12,8 +12,9 @@ def check_profile_exists(user_name):
         cursor = connection.cursor()
         cursor.execute(query, (user_id, ))
         result = cursor.fetchone()
+        result = result[0]
         cursor.close()
-        if result == 1:
+        if result == "1":
             print("yes, exists:", result)
         else:
             print("not exists:", result)

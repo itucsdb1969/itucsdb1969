@@ -11,6 +11,8 @@ from db.insert_player_table import insert_players_db
 from db.get_player_table import get_players_db
 from db.insert_user_table import insert_users_db
 from db.get_user_pw import get_user_pw_with_username
+from db.update_player_table import update_players_db
+from db.get_profile_status import check_profile_exists
 from model.user import User
 from model.player import Player
 result = []
@@ -57,15 +59,22 @@ def logout():
 def profile_sets():
     teams = []
     teams = get_teams_db()
+    status = int(check_profile_exists(session['username']))
+    print("sa: ", status)
     if request.method == 'POST':
         full_name = request.form['full_name']
         age = request.form['age']
         team_name = request.form['team_name']
         username = session['username']
         player = Player(full_name, 0, age)
-        insert_players_db(player, username, team_name)
-        return render_template("profile.html")
-    return render_template("profile.html", teams = teams)
+        if(status == 1):
+            print("updated")
+            update_players_db(player, username, team_name)
+        else:
+            insert_players_db(player, username, team_name)
+            status = 1
+        return render_template("profile.html", teams = teams, status = status)
+    return render_template("profile.html", teams = teams, status = status)
 
 
 @app.route("/players")
