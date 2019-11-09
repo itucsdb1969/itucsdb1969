@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='file.css') }}"/>
+    <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Google Nexus Website Menu</title>
+		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
+		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="static/css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/component.css" />
+		<script src="static/js/modernizr.custom.js"></script>
   </head>
   <body>
+		<div class="container">
+			<ul id="gn-menu" class="gn-menu-main">
+				<li class="gn-trigger">
+					<a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+					<nav class="gn-menu-wrapper">
+						<div class="gn-scroller">
+							<ul class="gn-menu">
+                                <li><a href="/home" class="gn-icon gn-icon-download">Home</a></li>
+								<li><a href="/teams" class="gn-icon gn-icon-download">Teams</a></li>
+								<li><a href="/players" class="gn-icon gn-icon-cog">Players</a></li>
+								{% if session['username'] %}
+                                    <a href="/profile">{{ session['username'] }}</a>
+                                    <li><a href="/logout" class="gn-icon gn-icon-help">Logout</a></li>
+                                {% else %}
+                                    <li> <a href="/register" class="gn-icon gn-icon-help">Register</a></li>
+                                    <li> <a href="/login" class="gn-icon gn-icon-help">Login</a></li>
+                                {% endif %}
+							</ul>
+						</div><!-- /gn-scroller -->
+					</nav>
+				</li>
+				<li><a href="http://tympanus.net/codrops">Codrops</a></li></a></li>
+			</ul>
+			<header>
+				<h1>MatchMe!<span>Find your best teammates!</span></h1>
+			</header>
+		</div><!-- /container -->
+		<script src="static/js/classie.js"></script>
+		<script src="static/js/gnmenu.js"></script>
+		<script>
+			new gnMenu( document.getElementById( 'gn-menu' ) );
+		</script>
+	</body>
+
+  <!--<body>
     <header>
           <div class="vertical-menu">
               <a href="/home">Home</a>
@@ -21,8 +61,8 @@
               <a href="/register">Register</a>
               <a href="/login">Login</a>
               {% endif %}
-              
-          </div> 
+
+          </div>
     </header>
 
 
@@ -33,6 +73,7 @@
         </div>
       </section>
     </main>
+    </body>-->
     
-  </body>
+
 </html>
