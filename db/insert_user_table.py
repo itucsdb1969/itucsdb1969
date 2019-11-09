@@ -8,6 +8,4 @@ def insert_users_db(user):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query, (user.name, user.password))
-        users = cursor.fetchall()
         cursor.close()
-        return users

@@ -9,6 +9,8 @@ from db.get_db_url import get_db_url
 from db.get_team_table import get_teams_db
 from db.insert_player_table import insert_players_db
 from db.get_player_table import get_players_db
+from db.insert_user_table import insert_users_db
+from model.user import User
 result = []
 @app.route("/")
 def index():
@@ -45,14 +47,8 @@ def register_page():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # print(username, password)
-        url = get_db_url() #"dbname='postgres' user='postgres' host='localhost' password='123456'"
-        connection = dbapi2.connect(url)
-        cursor = connection.cursor()
-        statement = """insert into users(name, password, is_active, is_admin) values(%s , %s , true , false);"""
-        cursor.execute(statement, (username,password))
-        connection.commit()
-        cursor.close()
+        usr = User(username, password, True, False)
+        insert_users_db(usr)
         return render_template("home.html")
     return render_template("register.html")
 
