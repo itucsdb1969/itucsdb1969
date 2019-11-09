@@ -1,8 +1,9 @@
-from flask import Flask, request,flash
-from flask import render_template
+from flask import Flask, request,flash,session
+from flask import render_template, redirect
 import psycopg2 as dbapi2
 from forms import LoginForm, RegisterForm
 app = Flask(__name__)
+app.secret_key = 'ITUCSDB1969 SA'
 from db.get_user_table import get_users_db
 from db.get_db_url import get_db_url
 result = []
@@ -17,6 +18,7 @@ def login():
     result = []
     if request.method == "POST":
         username = request.form['username']
+        session['username'] = username
         password_form = request.form['password']
         url = get_db_url()
         with dbapi2.connect(url) as connection: 
@@ -54,6 +56,11 @@ def register_page():
         cursor.close()
         return render_template("home.html")
     return render_template("register.html")
+
+@app.route("/logout", methods=['POST','GET'])
+def logout():
+    session.pop('username', None)
+    return render_template("home.html")
 
 @app.route("/players")
 def all_players_page():
