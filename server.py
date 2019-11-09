@@ -72,7 +72,6 @@ def profile_sets():
 def all_players_page():
     players = []
     players = get_players_db()
-    print(players[0])
     return render_template("players.html", players = players)    
 @app.route("/teams")
 def all_teams_page():
