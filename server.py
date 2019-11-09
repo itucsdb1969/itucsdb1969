@@ -18,7 +18,6 @@ def login():
     result = []
     if request.method == "POST":
         username = request.form['username']
-        session['username'] = username
         password_form = request.form['password']
         url = get_db_url()
         with dbapi2.connect(url) as connection: 
@@ -26,17 +25,13 @@ def login():
             statement = """select password from users 
                     where name = %s"""
             cursor.execute(statement, [username])
-            result = cursor.fetchall()
-            print(result)
-            for res in result:
-                print(res[0])
+            result = cursor.fetchone()
             cursor.close()
-            printed = get_users_db()
-            print(printed)
-            if(password_form == res[0]):
+            if(password_form == result):
+                session['username'] = username
                 return render_template("home.html")
             else:
-                return render_template("login.html")            
+                return render_template("login.html", error= "Invalid Password Error!")            
     return render_template("login.html")
 
 

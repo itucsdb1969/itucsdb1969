@@ -3,7 +3,9 @@
 {% block content %}
 
 
-
+{% if error %}
+<p> {{ error }} </p>
+{% endif %}
 <form action="" method="POST">
   <div class="form-group w-50">
    <label class="bg-dark w-50 rounded text-white "> <b>Username</b></label>
