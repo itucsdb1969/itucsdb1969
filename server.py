@@ -34,7 +34,7 @@ def login():
                 return render_template("home.html")
             else:
                 return render_template("login.html")            
-    return render_template("login.html", messages = result)
+    return render_template("login.html")
 
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
