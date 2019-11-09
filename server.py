@@ -12,6 +12,7 @@ from db.get_player_table import get_players_db
 from db.insert_user_table import insert_users_db
 from db.get_user_pw import get_user_pw_with_username
 from model.user import User
+from model.player import Player
 result = []
 @app.route("/")
 def index():
@@ -61,7 +62,8 @@ def profile_sets():
         age = request.form['age']
         team_name = request.form['team_name']
         username = session['username']
-        insert_players_db(full_name, age, username, team_name)
+        player = Player(full_name, 0, age)
+        insert_players_db(player, username, team_name)
         return render_template("profile.html")
     return render_template("profile.html", teams = teams)
 
