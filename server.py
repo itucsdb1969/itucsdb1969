@@ -10,6 +10,7 @@ from db.get_team_table import get_teams_db
 from db.insert_player_table import insert_players_db
 from db.get_player_table import get_players_db
 from db.insert_user_table import insert_users_db
+from db.get_user_pw import get_user_pw_with_username
 from model.user import User
 result = []
 @app.route("/")
@@ -20,24 +21,16 @@ def home():
     return render_template("home.html")
 @app.route("/login", methods=['POST','GET'])
 def login():
-    result = []
     if request.method == "POST":
         username = request.form['username']
         password_form = request.form['password']
-        url = get_db_url()
-        with dbapi2.connect(url) as connection: 
-            cursor = connection.cursor()
-            statement = """select password from users 
-                    where name = %s"""
-            cursor.execute(statement, [username])
-            result = cursor.fetchone()
-            cursor.close()
-            print(result)
-            if(password_form == result[0]):
-                session['username'] = username
-                return render_template("home.html")
-            else:
-                return render_template("login.html", error= "Invalid Password Error!")            
+        passwd_from_db = get_user_pw_with_username(username) 
+        print(passwd_from_db)
+        if(password_form == passwd_from_db[0]):
+            session['username'] = username
+            return render_template("home.html")
+        else:
+            return render_template("login.html", error= "Invalid Password Error!")            
     return render_template("login.html")
 
 
@@ -68,7 +61,6 @@ def profile_sets():
         age = request.form['age']
         team_name = request.form['team_name']
         username = session['username']
-        print(full_name, age, username, team_name)
         insert_players_db(full_name, age, username, team_name)
         return render_template("profile.html")
     return render_template("profile.html", teams = teams)

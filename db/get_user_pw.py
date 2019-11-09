@@ -9,5 +9,6 @@ def get_user_pw_with_username(user_name):
         cursor = connection.cursor()
         cursor.execute(query, (user_name, ))
         password = cursor.fetchone()
+        print(password)
         cursor.close()
         return password
