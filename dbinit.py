@@ -88,8 +88,8 @@ def initialize(url):
 
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
-    url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
-    initialize(url)
+    #url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+    #initialize(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
