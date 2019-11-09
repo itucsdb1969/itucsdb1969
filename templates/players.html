@@ -2,9 +2,11 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<p>
-    Takım Listesi Gelecek
-</p> 
+{% if players %}
+{% for player in players %}
+    <p>{{player[3]}} - Age: {{player[5]}} </p>>
+{%endfor%}
+{% endif %}
 
 
 {% endblock %}

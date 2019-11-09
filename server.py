@@ -8,6 +8,7 @@ from db.get_user_table import get_users_db
 from db.get_db_url import get_db_url
 from db.get_team_table import get_teams_db
 from db.insert_player_table import insert_players_db
+from db.get_player_table import get_players_db
 result = []
 @app.route("/")
 def index():
@@ -79,9 +80,15 @@ def profile_sets():
 
 @app.route("/players")
 def all_players_page():
-    return render_template("players.html")    
+    players = []
+    players = get_players_db()
+    print(players[0])
+    return render_template("players.html", players = players)    
 @app.route("/teams")
 def all_teams_page():
-    return render_template("teams.html")
+    teams = []
+    teams = get_teams_db()
+    print(teams[0])
+    return render_template("teams.html", teams = teams)
 if __name__ == "__main__":
     app.run(debug=True) 

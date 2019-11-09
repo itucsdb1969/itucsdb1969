@@ -2,9 +2,10 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<p>
-    Takım Listesi Gelecek
-</p> 
-
+{% if teams %}
+{% for team in teams %}
+    <p>{{team[1]}} - Rating: {{team[2]}} / 5.00</p>>
+{%endfor%}
+{% endif %}
 
 {% endblock %}
