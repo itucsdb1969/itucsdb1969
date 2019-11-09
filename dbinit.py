@@ -4,28 +4,33 @@ import sys
 import psycopg2 as dbapi2
 
 DROP_STATEMENTS = [
-    "DROP TABLE IF EXISTS User cascade"
+    "DROP TABLE IF EXISTS Users cascade",
     "DROP TABLE IF EXISTS Player cascade",
     "DROP TABLE IF EXISTS Team cascade",
     "DROP TABLE IF EXISTS Match cascade",
     "DROP TABLE IF EXISTS Stadium cascade",
-    "DROP TABLE IF EXISTS Appointment cascade",
-    "DROP TABLE IF EXISTS users",
+    "DROP TABLE IF EXISTS Appointment cascade"
 ]
 
 INIT_STATEMENTS = [
 
-    """CREATE TABLE IF NOT EXISTS User
-        (
+    """CREATE TABLE IF NOT EXISTS Users(
             user_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(20) UNIQUE,
             password VARCHAR(64),
             is_active BOOLEAN DEFAULT TRUE,
             is_admin BOOLEAN DEFAULT FALSE
         )""",
-
-    """CREATE TABLE IF NOT EXISTS Player
-        (
+    
+    """
+    CREATE TABLE IF NOT EXISTS Team(
+            team_id SERIAL NOT NULL PRIMARY KEY,
+            name VARCHAR (50) NOT NULL,
+            rating NUMERIC(3,2),
+            is_available BOOLEAN DEFAULT TRUE
+        )""",
+    
+    """CREATE TABLE IF NOT EXISTS Player(
             player_id SERIAL NOT NULL PRIMARY KEY,
             team_id INTEGER,
             name VARCHAR (50) NOT NULL,
@@ -33,21 +38,9 @@ INIT_STATEMENTS = [
             age INTEGER,
             FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
-
     """
-    CREATE TABLE IF NOT EXISTS Team
-        (
-            team_id SERIAL NOT NULL PRIMARY KEY,
-            match_id INTEGER,
-            name VARCHAR (50) NOT NULL,
-            rating NUMERIC(3,2),
-            is_available BOOLEAN DEFAULT TRUE,
-            FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE
-        )""",
-
-    """
-    CREATE TABLE IF NOT EXISTS Match
-        (
+    
+    CREATE TABLE IF NOT EXISTS Match(
             match_id SERIAL NOT NULL PRIMARY KEY,
             team1_id INTEGER,
             team2_id INTEGER,
@@ -55,14 +48,12 @@ INIT_STATEMENTS = [
             FOREIGN KEY (team2_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
 
-    """CREATE TABLE IF NOT EXISTS Stadium
-        (
+    """CREATE TABLE IF NOT EXISTS Stadium(
             stadium_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR (50) NOT NULL
         )""",
 
-    """CREATE TABLE IF NOT EXISTS Appointment
-        (
+    """CREATE TABLE IF NOT EXISTS Appointment(
             appointment_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR (50) NOT NULL,
             match_id INTEGER NOT NULL,

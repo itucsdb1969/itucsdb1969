@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+
+
+<form action="" method="post" name="Country add">
+   <div class="login-reg-panel">
+      <div class="login-info-box">
+        <label id="label-register" for="log-reg-show">Login</label>
+      </div>
+							
+		<div class="white-panel">
+			<div class="login-show">
+				<h2>LOGIN</h2>
+				<input type="text" name="name" placeholder="Email">
+				<input type="password" placeholder="Password">
+				<input type="button" value="Login">
+        <a href="">Forgot password?</a>
+			</div>
+		</div>
+  </div>
+</form>
+  {% for mes in messages %}
+    <p><b>{{ mes }}</b></p>
+  {% endfor %}
+  
+  {% endblock %}
