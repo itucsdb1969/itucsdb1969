@@ -13,6 +13,7 @@ from db.insert_user_table import insert_users_db
 from db.get_user_pw import get_user_pw_with_username
 from db.update_player_table import update_players_db
 from db.get_profile_status import check_profile_exists
+from db.delete_player_table import delete_players_db
 from model.user import User
 from model.player import Player
 result = []
@@ -75,8 +76,11 @@ def profile_sets():
             status = 1
         return render_template("profile.html", teams = teams, status = status)
     return render_template("profile.html", teams = teams, status = status)
-
-
+@app.route("/delete", methods=['POST'])
+def delete_player():
+    usrname = session['username']
+    delete_players_db(usrname)
+    return render_template("home.html")
 @app.route("/players")
 def all_players_page():
     players = []
