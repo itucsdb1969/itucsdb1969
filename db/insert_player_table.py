@@ -15,13 +15,13 @@ CREATE TABLE IF NOT EXISTS Player(
         )
 """
 
-def insert_players_db(name, age, user_name, team_name):
+def insert_players_db(player, user_name, team_name):
     user_id = db_usr.get_user_id_with_username(user_name)
     team_id = db_team.get_team_id_with_teamname(team_name)
     query = "INSERT INTO PLAYER (name, age, user_id, team_id ) VALUES(%s, %s, %s, %s )"
     url = db_url.get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        cursor.execute(query, (name, age, user_id, team_id))
+        cursor.execute(query, (player.name, player.age, user_id, team_id))
         cursor.close()
         return True
