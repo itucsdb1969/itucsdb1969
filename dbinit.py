@@ -33,10 +33,12 @@ INIT_STATEMENTS = [
     """CREATE TABLE IF NOT EXISTS Player(
             player_id SERIAL NOT NULL PRIMARY KEY,
             team_id INTEGER,
+            user_id INTEGER,
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             age INTEGER,
             FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
+            FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
     """
     
