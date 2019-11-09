@@ -4,6 +4,7 @@ import psycopg2 as dbapi2
 from forms import LoginForm, RegisterForm
 app = Flask(__name__)
 from db.get_user_table import get_users_db
+from db.get_db_url import get_db_url
 result = []
 @app.route("/")
 def index():
@@ -17,7 +18,7 @@ def login():
     if request.method == "POST":
         username = request.form['username']
         password_form = request.form['password']
-        url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+        url = get_db_url()
         with dbapi2.connect(url) as connection: 
             cursor = connection.cursor()
             statement = """select password from users 
@@ -36,6 +37,7 @@ def login():
                 return render_template("login.html")            
     return render_template("login.html")
 
+
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
     print("sa")
@@ -43,7 +45,7 @@ def register_page():
         username = request.form['username']
         password = request.form['password']
         # print(username, password)
-        url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+        url = get_db_url() #"dbname='postgres' user='postgres' host='localhost' password='123456'"
         connection = dbapi2.connect(url)
         cursor = connection.cursor()
         statement = """insert into users(name, password, is_active, is_admin) values(%s , %s , true , false);"""
