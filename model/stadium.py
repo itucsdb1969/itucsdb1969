@@ -1,5 +1,4 @@
 class Stadium:
-    def __init__(self, stadium_id, name):
-        self.stadium_id = stadium_id
+    def __init__(self, name):
         self.name = name
 

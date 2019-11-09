@@ -1,6 +1,5 @@
 class Appointment:
-    def __init__(self, appointment_id, name, match_id, stadium_id, start_time, end_time):
-        self.appointment_id = appointment_id
+    def __init__(self, name, match_id, stadium_id, start_time, end_time):
         self.name = name
         self.match_id = match_id
         self.stadium_id = stadium_id
