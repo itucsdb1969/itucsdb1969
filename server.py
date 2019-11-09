@@ -3,7 +3,7 @@ from flask import render_template, redirect
 import psycopg2 as dbapi2
 from forms import LoginForm, RegisterForm
 app = Flask(__name__)
-app.secret_key = 'ITUCSDB1969 SA'
+app.secret_key = 'ITUCSDB1969'
 from db.get_user_table import get_users_db
 from db.get_db_url import get_db_url
 from db.get_team_table import get_teams_db
