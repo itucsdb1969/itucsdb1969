@@ -23,6 +23,5 @@ def insert_players_db(name, age, user_name, team_name):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query, (name, age, user_id, team_id))
-        player = cursor.fetchall()
         cursor.close()
-        return player
+        return True

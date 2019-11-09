@@ -37,8 +37,8 @@ INIT_STATEMENTS = [
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             age INTEGER,
-            FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
-            FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+            FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
     """
     
@@ -71,6 +71,8 @@ INIT_STATEMENTS = [
 def initialize(url):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
+        for statement in DROP_STATEMENTS:
+            cursor.execute(statement)
         for statement in INIT_STATEMENTS:
             cursor.execute(statement)
         cursor.close()
@@ -78,6 +80,8 @@ def initialize(url):
 
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
+    #url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
+    #initialize(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)

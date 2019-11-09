@@ -10,4 +10,5 @@ def get_team_id_with_teamname(team_name):
         cursor.execute(query, (team_name, ))
         team_id = cursor.fetchone()
         cursor.close()
+        print("team_id: ", team_id)
         return team_id

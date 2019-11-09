@@ -6,6 +6,8 @@ app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969 SA'
 from db.get_user_table import get_users_db
 from db.get_db_url import get_db_url
+from db.get_team_table import get_teams_db
+from db.insert_player_table import insert_players_db
 result = []
 @app.route("/")
 def index():
@@ -27,7 +29,8 @@ def login():
             cursor.execute(statement, [username])
             result = cursor.fetchone()
             cursor.close()
-            if(password_form == result):
+            print(result)
+            if(password_form == result[0]):
                 session['username'] = username
                 return render_template("home.html")
             else:
@@ -56,6 +59,23 @@ def register_page():
 def logout():
     session.pop('username', None)
     return render_template("home.html")
+
+@app.route("/profile", methods=['POST','GET'])
+def profile_sets():
+    print("as")
+    teams = []
+    teams = get_teams_db()
+    print("as")
+    if request.method == 'POST':
+        full_name = request.form['full_name']
+        age = request.form['age']
+        team_name = request.form['team_name']
+        username = session['username']
+        print(full_name, age, username, team_name)
+        insert_players_db(full_name, age, username, team_name)
+        return render_template("profile.html")
+    return render_template("profile.html", teams = teams)
+
 
 @app.route("/players")
 def all_players_page():
