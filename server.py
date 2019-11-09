@@ -53,10 +53,8 @@ def logout():
 
 @app.route("/profile", methods=['POST','GET'])
 def profile_sets():
-    print("as")
     teams = []
     teams = get_teams_db()
-    print("as")
     if request.method == 'POST':
         full_name = request.form['full_name']
         age = request.form['age']
