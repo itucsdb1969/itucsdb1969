@@ -65,6 +65,14 @@ INIT_STATEMENTS = [
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE RESTRICT ON UPDATE CASCADE ,
             FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE RESTRICT ON UPDATE CASCADE   
         )""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Galatasaray', '5.0');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Fenerbahce', '4.5');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Besiktas', '4.2');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Trabzonspor', '4.0');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Konyaspor', '3.5');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Kayserispor', '2.5');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Malatyaspor', '1.5');""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Bursaspor', '0.5');"""
 ]
 
 
