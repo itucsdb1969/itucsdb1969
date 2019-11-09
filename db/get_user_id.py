@@ -3,7 +3,7 @@ import db.get_db_url as db_url
 
 
 def get_user_id_with_username(user_name):
-    query = "SELECT user_id FROM Users WHERE user_name = %s"
+    query = "SELECT user_id FROM Users WHERE name = %s"
     url = db_url.get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
