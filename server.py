@@ -27,11 +27,14 @@ def login():
         password_form = request.form['password']
         passwd_from_db = get_user_pw_with_username(username) 
         print(passwd_from_db)
-        if(password_form == passwd_from_db[0]):
-            session['username'] = username
-            return render_template("home.html")
+        if(passwd_from_db):
+            if(password_form == passwd_from_db[0]):
+                session['username'] = username
+                return render_template("home.html")
+            else:
+                return render_template("login.html", error= "Invalid Password Error!")
         else:
-            return render_template("login.html", error= "Invalid Password Error!")            
+            return render_template("login.html", error= "Invalid Username Error!")            
     return render_template("login.html")
 
 
