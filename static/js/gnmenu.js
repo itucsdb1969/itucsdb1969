@@ -40,14 +40,15 @@
 		},
 		_initEvents : function() {
 			var self = this;
-
+			this._openMenu()
+/*
 			if( !mobilecheck() ) {
 				this.trigger.addEventListener( 'mouseover', function(ev) { self._openIconMenu(); } );
 				this.trigger.addEventListener( 'mouseout', function(ev) { self._closeIconMenu(); } );
-			
+
 				this.menu.addEventListener( 'mouseover', function(ev) {
-					self._openMenu(); 
-					document.addEventListener( self.eventtype, self.bodyClickFn ); 
+					self._openMenu();
+					document.addEventListener( self.eventtype, self.bodyClickFn );
 				} );
 			}
 			this.trigger.addEventListener( this.eventtype, function( ev ) {
@@ -62,7 +63,7 @@
 					document.addEventListener( self.eventtype, self.bodyClickFn );
 				}
 			} );
-			this.menu.addEventListener( this.eventtype, function(ev) { ev.stopPropagation(); } );
+			this.menu.addEventListener( this.eventtype, function(ev) { ev.stopPropagation(); } );*/
 		},
 		_openIconMenu : function() {
 			classie.add( this.menu, 'gn-open-part' );

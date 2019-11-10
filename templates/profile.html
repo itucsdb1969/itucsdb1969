@@ -11,17 +11,20 @@
         <label class="bg-dark w-50 rounded text-white"><b>Age</b></label>
         <input type="text" name="age" class="form-control" value={{request.form.age}}>
     </div>
-    <select name="team_name">
-        {% if teams %}
-        {% for team in teams %}
-            <option value="{{team[1]}}">{{team[1]}}</option>
-        {%endfor%}
-        {% endif %}
-    </select>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <div style="text-align:center;">
+        <select name="team_name">
+            {% if teams %}
+            {% for team in teams %}
+                <option value="{{team[1]}}">{{team[1]}}</option>
+            {%endfor%}
+            {% endif %}
+        </select>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+
 </form>
 <form method="POST" name ="delete" action="delete">
-    <input type="submit" id="deleteButton" name="deleteButton" value="DELETE" />
+    <p style="text-align: center;"><input type="submit" id="deleteButton" name="deleteButton" value="DELETE" /></p>
 </form>
 {% else %}
 <form action="" method="POST">
@@ -33,14 +36,18 @@
         <label class="bg-dark w-50 rounded text-white"><b>Age</b></label>
         <input type="text" name="age" class="form-control" value={{request.form.age}}>
     </div>
-    <select name="team_name">
-        {% if teams %}
-        {% for team in teams %}
-            <option value="{{team[1]}}">{{team[1]}}</option>
-        {%endfor%}
-        {% endif %}
-    </select>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div style="text-align:center;">
+        <select name="team_name">
+                {% if teams %}
+                {% for team in teams %}
+                    <option value="{{team[1]}}">{{team[1]}}</option>
+                {%endfor%}
+                {% endif %}
+        </select>
+    </div>
+    <div style="text-align:center;">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 
 {% endif %}

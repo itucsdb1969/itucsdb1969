@@ -25,7 +25,7 @@
 								<li><a href="/teams" class="gn-icon gn-icon-download">Teams</a></li>
 								<li><a href="/players" class="gn-icon gn-icon-cog">Players</a></li>
 								{% if session['username'] %}
-                                    <a href="/profile">{{ session['username'] }}</a>
+									<li><a href="/profile" class="gn-icon gn-icon-cog">{{ session['username'] }}</a></li>
                                     <li><a href="/logout" class="gn-icon gn-icon-help">Logout</a></li>
                                 {% else %}
                                     <li> <a href="/register" class="gn-icon gn-icon-help">Register</a></li>
@@ -35,45 +35,26 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
+				<li><img style="width: 30%;" src="./static/img/logo.png" alt="My Image"></li>
+
 				<li><a href="http://tympanus.net/codrops">Codrops</a></li></a></li>
 			</ul>
-			<header>
 				<h1>MatchMe!<span>Find your best teammates!</span></h1>
-			</header>
 		</div><!-- /container -->
 		<script src="static/js/classie.js"></script>
 		<script src="static/js/gnmenu.js"></script>
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
+		<main>
+		  <section class="section">
+			<div class="content">
+			  {% block content %}{% endblock %}
+			</div>
+		  </section>
+		</main>
 	</body>
+</html>
 
-  <!--<body>
-    <header>
-          <div class="vertical-menu">
-              <a href="/home">Home</a>
-              <a href="/teams">Teams</a>
-              <a href="/players">Players</a>
-              {% if session['username'] %}
-              <a href="/profile">{{ session['username'] }}</a>
-              <a href="/logout">Logout</a>
-              {% else %}
-              <a href="/register">Register</a>
-              <a href="/login">Login</a>
-              {% endif %}
-
-          </div>
-    </header>
-
-
-    <main>
-      <section class="section">
-        <div class="content">
-          {% block content %}{% endblock %}
-        </div>
-      </section>
-    </main>
-    </body>-->
     
 
-</html>

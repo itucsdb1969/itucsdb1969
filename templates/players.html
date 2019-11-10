@@ -1,12 +1,24 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<p>Player List</p> 
+
+
+<table id="players">
+  <tr>
+    <th>Player</th>
+    <th>Age</th>
+    <th>Rating</th>
+  </tr>
 {% if players %}
 {% for player in players %}
-    <p>{{player[3]}} - Age: {{player[5]}} </p>>
-{%endfor%}
-{% endif %}
+        <tr>
+                <td><h1><span><p style="color:green; text-align: right;">{{player[3]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">{{player[5]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;"></p></span></h1></td>
+        </tr>
+{% endfor %}
 
+{% endif %}
+</table>
 
 {% endblock %}

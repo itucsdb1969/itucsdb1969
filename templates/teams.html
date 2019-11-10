@@ -1,11 +1,23 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
+<table id="players">
+  <tr>
+    <th>Team</th>
+    <th>Rating</th>
+    <th>Details</th>
+  </tr>
 {% if teams %}
 {% for team in teams %}
-    <p>{{team[1]}} - Rating: {{team[2]}} / 5.00</p>>
-{%endfor%}
+        <tr>
+                <td><h1><span><p style="color:green; text-align: right;">{{team[1]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">{{team[2]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;"><button type="submit" class="btn btn-primary">Info</button>
+</p></span></h1></td>
+        </tr>
+{% endfor %}
+
 {% endif %}
+</table>
 
 {% endblock %}
