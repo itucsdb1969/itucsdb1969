@@ -48,7 +48,7 @@ def register_page():
         password = request.form['password']
         usr = User(username, password, True, False)
         insert_users_db(usr)
-        return render_template("home.html")
+        return render_template("login.html")
     return render_template("register.html")
 
 @app.route("/logout", methods=['POST','GET'])
