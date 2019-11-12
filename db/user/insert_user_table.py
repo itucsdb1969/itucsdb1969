@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-import db.get_db_url as db_url
+import db.utils.get_db_url as db_url
 
 
 def insert_users_db(user):

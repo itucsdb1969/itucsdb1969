@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-import db.get_db_url as db_url
+import db.utils.get_db_url as db_url
 
 
 def get_user_pw_with_username(user_name):

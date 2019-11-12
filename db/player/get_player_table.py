@@ -1,10 +1,9 @@
 import psycopg2 as dbapi2
-import db.get_db_url as db_url
+from db.utils.get_db_url import get_db_url
 
-
-def get_users_db():
-    query = "SELECT * FROM Users"
-    url = db_url.get_db_url() #"dbname='postgres' user='postgres' host='localhost' password='123456'"
+def get_players_db():
+    query = "SELECT * FROM Player"
+    url = get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query)

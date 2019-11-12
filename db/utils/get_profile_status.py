@@ -1,6 +1,6 @@
 import psycopg2 as dbapi2
-import db.get_user_id as db_usr
-import db.get_db_url as db_url
+import db.user.get_user_id as db_usr
+import db.utils.get_db_url as db_url
 
 
 def check_profile_exists(user_name):

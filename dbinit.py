@@ -1,6 +1,5 @@
 import os
 import sys
-
 import psycopg2 as dbapi2
 
 DROP_STATEMENTS = [
@@ -16,7 +15,7 @@ INIT_STATEMENTS = [
 
     """CREATE TABLE IF NOT EXISTS Users(
             user_id SERIAL NOT NULL PRIMARY KEY,
-            name VARCHAR(20) UNIQUE,
+            name VARCHAR(20) UNIQUE NOT NULL,
             password VARCHAR(64),
             is_active BOOLEAN DEFAULT TRUE,
             is_admin BOOLEAN DEFAULT FALSE
@@ -25,7 +24,7 @@ INIT_STATEMENTS = [
     """
     CREATE TABLE IF NOT EXISTS Team(
             team_id SERIAL NOT NULL PRIMARY KEY,
-            name VARCHAR (50) NOT NULL,
+            name VARCHAR (50) UNIQUE NOT NULL,
             rating NUMERIC(3,2),
             is_available BOOLEAN DEFAULT TRUE
         )""",
@@ -88,8 +87,8 @@ def initialize(url):
 
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
-    #url = "dbname='itucsdb1969' user='postgres' host='localhost' password='123456'"
-    #initialize(url)
+    # url = "dbname='itucsdb1969' user='postgres' host='localhost' password='123456'"
+    # initialize(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
