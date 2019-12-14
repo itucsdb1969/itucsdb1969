@@ -51,7 +51,7 @@ INIT_STATEMENTS = [
 
     """CREATE TABLE IF NOT EXISTS Stadium(
             stadium_id SERIAL NOT NULL PRIMARY KEY,
-            name VARCHAR (50) NOT NULL
+            name VARCHAR (50) UNIQUE NOT NULL
         )""",
 
     """CREATE TABLE IF NOT EXISTS Appointment(
