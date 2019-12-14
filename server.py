@@ -105,6 +105,15 @@ def all_teams_page():
     print(teams[0])
     return render_template("teams.html", teams = teams)
 
+@app.route("/team", methods=['GET','POST'])
+def team():
+    if request.method == 'POST':
+        team_id = request.form['team_id']
+        print("*************")
+        print(team_id)
+        return render_template("team.html")
+    if request.method == 'GET':
+        return render_template("team.html")
 @app.route("/matches")
 def matches_page():
     
