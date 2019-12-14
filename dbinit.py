@@ -71,7 +71,9 @@ INIT_STATEMENTS = [
     """INSERT INTO TEAM (NAME, RATING) VALUES('Konyaspor', '3.5');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Kayserispor', '2.5');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Malatyaspor', '1.5');""",
-    """INSERT INTO TEAM (NAME, RATING) VALUES('Bursaspor', '0.5');"""
+    """INSERT INTO TEAM (NAME, RATING) VALUES('Bursaspor', '0.5');""",
+    """INSERT INTO STADIUM (NAME) VALUES ('Ali Sami Yen Spor Kompleksi TT Arena')""",
+    """INSERT INTO STADIUM (NAME) VALUES ('Sukru Saracoglu Stadyumu')"""
 ]
 
 
