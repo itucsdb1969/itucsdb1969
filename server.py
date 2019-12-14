@@ -10,7 +10,9 @@ from db.utils.get_profile_status import check_profile_exists
 from db.player.delete_player_table import delete_players_db
 from model.user import User
 from model.player import Player
+from model.team import Team
 from db.team.get_team_player_table import get_team_players_with_team_id
+from db.team.insert_team_table import insert_teams_db
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -98,12 +100,20 @@ def all_players_page():
     return render_template("players.html", players = players)
 
 
-@app.route("/teams")
+@app.route("/teams", methods=['GET','POST'])
 def all_teams_page():
-    teams = []
-    teams = get_teams_db()
-    print(teams[0])
-    return render_template("teams.html", teams = teams)
+    if request.method == 'POST':
+        print(request.form['team_name'])
+        team = Team(request.form['team_name'], 5, "yes")
+        insert_teams_db(team)
+        teams = []
+        teams = get_teams_db()
+        return render_template("teams.html",teams = teams)
+    elif request.method == 'GET':
+        teams = []
+        teams = get_teams_db()
+        print(teams[0])
+        return render_template("teams.html", teams = teams)
 
 @app.route("/team", methods=['GET','POST'])
 def team():
