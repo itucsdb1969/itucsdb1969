@@ -10,7 +10,7 @@ from db.utils.get_profile_status import check_profile_exists
 from db.player.delete_player_table import delete_players_db
 from model.user import User
 from model.player import Player
-
+from db.team.get_team_player_table import get_team_players_with_team_id
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -111,7 +111,8 @@ def team():
         team_id = request.form['team_id']
         print("*************")
         print(team_id)
-        return render_template("team.html")
+        players = get_team_players_with_team_id(team_id)
+        return render_template("team.html", infos = players)
     if request.method == 'GET':
         return render_template("team.html")
 @app.route("/matches")

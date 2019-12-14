@@ -3,21 +3,16 @@
 {% block content %}
 <table id="players">
   <tr>
-    <th>asdf</th>
-    <th>ASDDD</th>
-    <th>ASD</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Age</th>
   </tr>
-{% if teams %}
-{% for team in teams %}
+{% if infos %}
+{% for info in infos %}
         <tr>
-                <td><h1><span><p style="color:green; text-align: right;">{{team[1]}}</p></span></h1></td>
-                <td><h1><span><p style="color:green; text-align: right;">{{team[2]}}</p></span></h1></td>
-                <td><h1><span><p style="color:green; text-align: right;"><button type="submit" class="btn btn-primary">Info</button>
-                <form action="{{ url_for('team') }}" method="POST">
-                  <input id="team_id" name="team_id" type="hidden" value="{{team[0]}}">
-                  <button type="submit"> Info </button>
-              </form>
-                </p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">{{info[0]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">{{info[1]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">{{info[2]}}</p></span></h1></td>
         </tr>
 {% endfor %}
 
