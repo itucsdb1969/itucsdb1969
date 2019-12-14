@@ -8,6 +8,6 @@ def get_team_players_with_team_id(team_id):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query, (team_id, ))
-        players = cursor.fetchone()
+        players = cursor.fetchall()
         cursor.close()
         return players
