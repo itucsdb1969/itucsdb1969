@@ -14,10 +14,10 @@ from db.team.get_team_id import get_team_id_with_teamname
 def insert_match_db(match):
     team1_id = get_team_id_with_teamname(match.team1_name)
     team2_id = get_team_id_with_teamname(match.team2_name)
-    query = "INSERT INTO MATCH (team1_id, team2_id) VALUES(%s, %s)"
+    query = "INSERT INTO MATCH (team1_id, team2_id) VALUES(%s, %s) RETURNING match_id;"
     url = get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        cursor.execute(query, (team1_id, team2_id))
+        match_id = cursor.execute(query, (team1_id, team2_id))
         cursor.close()
-        return True
+        return match_id
