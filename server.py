@@ -11,8 +11,12 @@ from db.player.delete_player_table import delete_players_db
 from model.user import User
 from model.player import Player
 from model.team import Team
+from model.match import Match
+from db.team.get_team_id import get_team_id_with_teamname
 from db.team.get_team_player_table import get_team_players_with_team_id
 from db.team.insert_team_table import insert_teams_db
+from db.match.insert_match_table import insert_match_db
+from db.match.get_match_table import get_match_db
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -104,7 +108,7 @@ def all_players_page():
 def all_teams_page():
     if request.method == 'POST':
         print(request.form['team_name'])
-        team = Team(request.form['team_name'], 5, "yes")
+        team = Team(request.form['team_name'], request.form['rating'], "yes")
         insert_teams_db(team)
         teams = []
         teams = get_teams_db()
@@ -125,9 +129,21 @@ def team():
         return render_template("team.html", infos = players)
     if request.method == 'GET':
         return render_template("team.html")
-@app.route("/matches")
+@app.route("/matches", methods= ['GET', 'POST'])
 def matches_page():
-    
-    return render_template("matches.html")
+    if request.method == 'POST':
+        teams = []
+        teams = get_teams_db()
+        match = Match(request.form['team_home'], request.form['team_away'])
+        insert_match_db(match)
+        matchs = []
+        matchs = get_match_db()
+        return render_template("matches.html", matchs = matchs, teams = teams)
+    if request.method == 'GET':
+        teams = []
+        teams = get_teams_db()
+        matchs = []
+        matchs = get_match_db()
+        return render_template("matches.html", matchs = matchs, teams = teams)
 if __name__ == "__main__":
     app.run(debug=True) 
