@@ -17,6 +17,7 @@ from db.team.get_team_player_table import get_team_players_with_team_id
 from db.team.insert_team_table import insert_teams_db
 from db.match.insert_match_table import insert_match_db
 from db.match.get_match_table import get_match_db
+from db.stadium.get_stadium_table import get_stadiums_db
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -138,12 +139,16 @@ def matches_page():
         insert_match_db(match)
         matchs = []
         matchs = get_match_db()
-        return render_template("matches.html", matchs = matchs, teams = teams)
+        stadiums = []
+        stadiums = get_stadiums_db()
+        return render_template("matches.html", matchs = matchs, teams = teams, stadiums = stadiums)
     if request.method == 'GET':
         teams = []
         teams = get_teams_db()
         matchs = []
         matchs = get_match_db()
-        return render_template("matches.html", matchs = matchs, teams = teams)
+        stadiums = []
+        stadiums = get_stadiums_db()
+        return render_template("matches.html", matchs = matchs, teams = teams, stadiums = stadiums)
 if __name__ == "__main__":
     app.run(debug=True) 
