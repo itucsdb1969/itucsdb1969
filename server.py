@@ -1,5 +1,5 @@
 from flask import Flask, request, session, flash
-from flask import render_template
+from flask import render_template, redirect
 from db.team.get_team_table import get_teams_db
 from db.player.insert_player_table import insert_players_db
 from db.player.get_player_table import get_players_db
@@ -22,6 +22,7 @@ from db.match.get_match_table import get_match_db
 from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 from db.appointment.get_appointment_table import get_appointments_db
+from db.appointment.update_appointment_table import update_appointments_db
 import psycopg2
 
 app = Flask(__name__)
@@ -157,7 +158,7 @@ def team():
 
 
 @app.route("/matches", methods=['GET', 'POST'])
-def matches_page():
+def matches():
     if request.method == 'POST':
         teams = get_teams_db()
         match = Match(request.form['team_home'], request.form['team_away'])
@@ -177,7 +178,12 @@ def matches_page():
         print(matchs)
         stadiums = get_stadiums_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
-
+@app.route("/edit_matches", methods=['GET','POST'])
+def edit_matches():
+    print(request.form['user_name'])
+    print(request.form['match_id'])
+    update_appointments_db(request.form['match_id'], request.form['user_name'])
+    return redirect("matches")
 
 if __name__ == "__main__":
     app.run(debug=True) 

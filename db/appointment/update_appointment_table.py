@@ -12,6 +12,6 @@ def update_appointments_db(appointment_id, username):
     url = get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        cursor.execute(query, (appointment_id, user_id, ))
+        cursor.execute(query, (user_id, appointment_id, ))
         cursor.close()
         return True
