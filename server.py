@@ -90,13 +90,18 @@ def profile_sets():
         username = session['username']
         player = Player(full_name, 0, age)
         if status == 1:
-            flash("You have successfully updated your player profile!")
-            update_players_db(player, username, team_name)
+            try:
+                update_players_db(player, username, team_name)
+                flash("You have successfully updated your player profile!")
+            except psycopg2.errors.InvalidTextRepresentation:
+                return render_template("profile.html", teams=teams, status=status, error="Name/Age not valid!")
         else:
-            flash("You have successfully created your player profile!")
-            insert_players_db(player, username, team_name)
-            status = 1
-        return render_template("profile.html", teams=teams, status=status)
+            try:
+                insert_players_db(player, username, team_name)
+                flash("You have successfully created your player profile!")
+                status = 1
+            except psycopg2.errors.InvalidTextRepresentation:
+                return render_template("profile.html", teams=teams, status=status, error="Name/Age not valid!")
     return render_template("profile.html", teams=teams, status=status)
 
 
