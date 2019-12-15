@@ -24,7 +24,6 @@ from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 from db.appointment.insert_appointment_table import insert_appointments_db
 from db.appointment.get_appointment_table import get_appointments_db
 from db.appointment.update_appointment_table import update_appointments_db
-
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -194,7 +193,13 @@ def matches():
         print(matchs)
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
-
+@app.route("/stadiums", methods=['GET', 'POST'])
+def stadiums():
+    print("a")
+    stadiums = []
+    stadiums = get_stadiums_db()
+    print(stadiums)
+    return render_template("stadiums.html", stadiums = stadiums)
 @app.route("/edit_matches", methods=['GET', 'POST'])
 def edit_matches():
     username = request.form['user_name']

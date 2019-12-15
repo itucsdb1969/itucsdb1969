@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+{% if error %}
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  {{error}}
+</div>
+{% endif %}
+
+{% with messages = get_flashed_messages() %}
+     {% if messages %}
+        <ul>
+           <div class="successAlert">
+			  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+			  {{messages[0]}}
+			</div>
+        </ul>
+     {% endif %}
+{% endwith %}
+
+<table id="players">
+  <tr>
+    <th>Team</th>
+    <th>Rating</th>
+    <th>Details</th>
+  </tr>
+{% if stadiums %}
+{% for stadium in stadiums %}
+          <tr>
+                <td><h1><span><p style="color:green; text-align: right;">{{stadium[1]}}</p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">
+                <form action="{{ url_for('team') }}" method="POST">
+                  <input id="team_id" name="team_id" type="hidden" value="{{stadium[0]}}">
+                  <button type="submit"> Info </button>
+                </form>
+                </p></span></h1></td>
+        </tr>
+{% endfor %}
+
+{% endif %}
+<tr>
+<div style="text-align: right;">
+<form action="" method="POST">
+  <input type="text" name="team_name" class="form-control" value={{request.form.team_name}}>
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <button type="submit"> Create Team </button>
+</form>
+</div>
+</tr>
+</table>
+{% endblock %}
