@@ -1,15 +1,5 @@
 import psycopg2 as dbapi2
 from db.utils.get_db_url import get_db_url
-"""
-class Appointment:
-    def __init__(self, name, match_id, stadium_id, start_time, end_time):
-        self.name = name
-        self.match_id = match_id
-        self.stadium_id = stadium_id
-        self.start_time = start_time
-        self.end_time = end_time
-
-"""
 
 
 def insert_appointments_db(appointment):
