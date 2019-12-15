@@ -62,8 +62,8 @@ INIT_STATEMENTS = [
             start_time VARCHAR (5) NOT NULL ,
             end_time VARCHAR (5) NOT NULL ,
             date VARCHAR (10) NOT NULL ,
-            FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE RESTRICT ON UPDATE CASCADE ,
-            FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE RESTRICT ON UPDATE CASCADE   
+            FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE ,
+            FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE CASCADE ON UPDATE CASCADE   
         )""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('FindMeATeam', '0.0');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Galatasaray', '5.0');""",

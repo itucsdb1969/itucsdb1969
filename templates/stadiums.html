@@ -23,18 +23,18 @@
 
 <table id="players">
   <tr>
-    <th>Team</th>
-    <th>Rating</th>
-    <th>Details</th>
+    <th>Stadium Name</th>
+    <th>Delete</th>
+    <th>Update</th>
   </tr>
 {% if stadiums %}
 {% for stadium in stadiums %}
           <tr>
                 <td><h1><span><p style="color:green; text-align: right;">{{stadium[1]}}</p></span></h1></td>
                 <td><h1><span><p style="color:green; text-align: right;">
-                <form action="{{ url_for('team') }}" method="POST">
-                  <input id="team_id" name="team_id" type="hidden" value="{{stadium[0]}}">
-                  <button type="submit"> Info </button>
+                <form action="{{ url_for('delete_stadiums') }}" method="POST">
+                  <input id="team_id" name="stadium_name" type="hidden" value="{{stadium[1]}}">
+                  <button type="submit"> Delete </button>
                 </form>
                 </p></span></h1></td>
         </tr>
@@ -43,16 +43,9 @@
 {% endif %}
 <tr>
 <div style="text-align: right;">
-<form action="" method="POST">
-  <input type="text" name="team_name" class="form-control" value={{request.form.team_name}}>
-  <select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button type="submit"> Create Team </button>
+<form action="{{ url_for('stadiums') }}" method="POST">
+  <input type="text" name="stadium_name" class="form-control" value={{request.form.stadium_name}}>
+  <button type="submit"> Create Stadium </button>
 </form>
 </div>
 </tr>

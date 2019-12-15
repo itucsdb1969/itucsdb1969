@@ -7,6 +7,7 @@ from model.player import Player
 from model.team import Team
 from model.match import Match
 from model.appointment import Appointment
+from model.stadium import Stadium
 from db.user.insert_user_table import insert_users_db
 from db.user.get_user_pw import get_user_pw_with_username
 from db.utils.get_profile_status import check_profile_exists
@@ -21,6 +22,8 @@ from db.team.get_team_player_table import get_team_players_with_team_id
 from db.team.insert_team_table import insert_teams_db
 from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
+from db.stadium.delete_stadium_table import delete_stadium_db
+from db.stadium.insert_stadium_table import insert_stadiums_db
 from db.appointment.insert_appointment_table import insert_appointments_db
 from db.appointment.get_appointment_table import get_appointments_db
 from db.appointment.update_appointment_table import update_appointments_db
@@ -195,11 +198,25 @@ def matches():
 
 @app.route("/stadiums", methods=['GET', 'POST'])
 def stadiums():
-    print("a")
     stadiums = []
+    if(request.method == 'GET'):
+        stadiums = get_stadiums_db()
+        print(stadiums)
+        return render_template("stadiums.html", stadiums = stadiums)
+    if(request.method == 'POST'):
+        stadium_name = request.form['stadium_name']
+        stadium = Stadium(stadium_name)
+        insert_stadiums_db(stadium)
+        stadiums = get_stadiums_db()
+        return render_template("stadiums.html", stadiums = stadiums)
+@app.route("/delete_stadiums", methods=['POST'])
+def delete_stadiums():
+    stadium_name = request.form['stadium_name'] 
+    print("aslkdjaşklsdjaşklsd", stadium_name)
+    delete_stadium_db(stadium_name)
     stadiums = get_stadiums_db()
-    print(stadiums)
-    return render_template("stadiums.html", stadiums = stadiums)
+    print(stadiums, request.form['stadium_name'])
+    return render_template("stadiums.html", stadiums= stadiums)
 @app.route("/edit_matches", methods=['GET', 'POST'])
 def edit_matches():
     username = request.form['user_name']
