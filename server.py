@@ -195,7 +195,7 @@ def matches():
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
 
-@app.route("/edit_matches", methods=['GET','POST'])
+@app.route("/edit_matches", methods=['GET', 'POST'])
 def edit_matches():
     username = request.form['user_name']
     if get_player_with_username(username):
