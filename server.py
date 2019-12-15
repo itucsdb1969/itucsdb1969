@@ -1,4 +1,4 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, flash
 from flask import render_template
 from db.team.get_team_table import get_teams_db
 from db.player.insert_player_table import insert_players_db
@@ -18,6 +18,8 @@ from db.team.insert_team_table import insert_teams_db
 from db.match.insert_match_table import insert_match_db
 from db.match.get_match_table import get_match_db
 from db.stadium.get_stadium_table import get_stadiums_db
+import psycopg2
+
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -25,7 +27,7 @@ result = []
 
 @app.route("/")
 def index():
-    return render_template("home.html",methods=["POST", "GET"])
+    return render_template("home.html", methods=["POST", "GET"])
 
 
 @app.route("/home")
@@ -33,7 +35,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/login", methods=['POST','GET'])
+@app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == "POST":
         username = request.form['username']
@@ -54,21 +56,27 @@ def login():
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        usr = User(username, password, True, False)
-        insert_users_db(usr)
-        return render_template("home.html")
+        try:
+            username = request.form['username']
+            password = request.form['password']
+            usr = User(username, password, True, False)
+            insert_users_db(usr)
+            flash('You have successfully created an account, now you can login')
+            return render_template("home.html")
+        except psycopg2.errors.UniqueViolation:
+            # print("Username already exists, pick different one!")
+            return render_template("register.html", error="Username already exists, pick different one!")
     return render_template("register.html")
 
 
-@app.route("/logout", methods=['POST','GET'])
+@app.route("/logout", methods=['POST', 'GET'])
 def logout():
     session.pop('username', None)
+    flash("You have successfully logged out!")
     return render_template("home.html")
 
 
-@app.route("/profile", methods=['POST','GET'])
+@app.route("/profile", methods=['POST', 'GET'])
 def profile_sets():
     teams = []
     teams = get_teams_db()
@@ -81,9 +89,10 @@ def profile_sets():
         username = session['username']
         player = Player(full_name, 0, age)
         if status == 1:
-            print("updated")
+            flash("You have successfully updated your player profile!")
             update_players_db(player, username, team_name)
         else:
+            flash("You have successfully created your player profile!")
             insert_players_db(player, username, team_name)
             status = 1
         return render_template("profile.html", teams=teams, status=status)
@@ -93,6 +102,7 @@ def profile_sets():
 @app.route("/delete", methods=['POST'])
 def delete_player():
     usrname = session['username']
+    flash("You have successfully deleted your player profile!")
     delete_players_db(usrname)
     return render_template("home.html")
 
@@ -105,20 +115,19 @@ def all_players_page():
     return render_template("players.html", players = players)
 
 
-@app.route("/teams", methods=['GET','POST'])
+@app.route("/teams", methods=['GET', 'POST'])
 def all_teams_page():
     if request.method == 'POST':
         print(request.form['team_name'])
         team = Team(request.form['team_name'], request.form['rating'], "yes")
         insert_teams_db(team)
-        teams = []
         teams = get_teams_db()
         return render_template("teams.html",teams = teams)
     elif request.method == 'GET':
-        teams = []
         teams = get_teams_db()
         print(teams[0])
         return render_template("teams.html", teams = teams)
+
 
 @app.route("/team", methods=['GET','POST'])
 def team():
@@ -130,25 +139,23 @@ def team():
         return render_template("team.html", infos = players)
     if request.method == 'GET':
         return render_template("team.html")
+
+
 @app.route("/matches", methods= ['GET', 'POST'])
 def matches_page():
     if request.method == 'POST':
-        teams = []
         teams = get_teams_db()
         match = Match(request.form['team_home'], request.form['team_away'])
         insert_match_db(match)
-        matchs = []
         matchs = get_match_db()
-        stadiums = []
         stadiums = get_stadiums_db()
-        return render_template("matches.html", matchs = matchs, teams = teams, stadiums = stadiums)
+        return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
     if request.method == 'GET':
-        teams = []
         teams = get_teams_db()
-        matchs = []
         matchs = get_match_db()
-        stadiums = []
         stadiums = get_stadiums_db()
-        return render_template("matches.html", matchs = matchs, teams = teams, stadiums = stadiums)
+        return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
+
+
 if __name__ == "__main__":
     app.run(debug=True) 
