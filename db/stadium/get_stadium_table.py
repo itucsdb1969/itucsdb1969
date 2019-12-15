@@ -8,6 +8,6 @@ def get_stadiums_db():
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
         cursor.execute(query)
-        users = cursor.fetchall()
+        stads = cursor.fetchall()
         cursor.close()
-        return users
+        return stads
