@@ -44,6 +44,7 @@
         </select>
         <input type="time" name="start_time">
         <input type="time" name="end_time">
+        <input type="date" name="match_date">
         <br>
         <button type="submit"> Create Match </button>
     </form>
@@ -55,6 +56,7 @@
         <th>Home Team</th>
         <th>Away Team</th>
         <th>Stadium Name</th>
+        <th>Date</th>
         <th>Start Time</th>
         <th>End Time</th> 
     </tr>
@@ -74,6 +76,7 @@
                         <td><h1><span><p style="color:green; text-align: right;">{{match[3]}}</p></span></h1></td>
                         {% endif %}
                         <td><h1><span><p style="color:green; text-align: right;">{{match[4]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[7]}}</p></span></h1></td>
                         <td><h1><span><p style="color:green; text-align: right;">{{match[5]}}</p></span></h1></td>
                         <td><h1><span><p style="color:green; text-align: right;">{{match[6]}}</p></span></h1></td>
                 </tr>

@@ -174,7 +174,8 @@ def matches():
         match_id = insert_match_db(match)
         stadiums = get_stadiums_db()
         stadium_id = get_stad_id_with_stad_name(request.form['stadium_name'])
-        appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
+        print(request.form['match_date'])
+        appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'], request.form['match_date'])
         if not request.form['appointment_name']:
             matchs = get_appointments_db()
             return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums, error="Appointment name can not be empty!")
@@ -190,6 +191,7 @@ def matches():
         teams = get_teams_db()
         matchs = get_appointments_db()
         stadiums = get_stadiums_db()
+        print(matchs)
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
 
