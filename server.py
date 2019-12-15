@@ -21,6 +21,7 @@ from db.match.insert_match_table import insert_match_db
 from db.match.get_match_table import get_match_db
 from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
+from db.appointment.get_appointment_table import get_appointments_db
 import psycopg2
 
 app = Flask(__name__)
@@ -167,11 +168,12 @@ def matches_page():
         print(request.form['appointment_name'])
         appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
         insert_appointments_db(appointment)
-        matchs = get_match_db()
+        matchs = get_appointments_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
     if request.method == 'GET':
         teams = get_teams_db()
-        matchs = get_match_db()
+        matchs = get_appointments_db()
+        print(matchs)
         stadiums = get_stadiums_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 

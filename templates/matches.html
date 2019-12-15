@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
+{% if(session['username']) %}
 <div style="text-align: right;">
     <form action="" method="POST">
         <input type="text" name="appointment_name" class="form-control" value={{request.form.appointment_name}}>
@@ -26,4 +26,14 @@
         <button type="submit"> Create Match </button>
     </form>
 </div>
+{% endif %}
+<table>
+    <tr>
+        <th>Appointment Name</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Start Time</th>
+        <th>End Time</th> 
+    </tr>
+</table>
 {% endblock %}
