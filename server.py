@@ -46,6 +46,8 @@ def login():
     if request.method == "POST":
         username = request.form['username']
         password_form = request.form['password']
+        if not username or not password_form:
+            return render_template("login.html", error="Username/Password can not be empty!")
         passwd_from_db = get_user_pw_with_username(username) 
         # print(passwd_from_db)
         if passwd_from_db:
@@ -63,9 +65,12 @@ def login():
 @app.route("/register", methods=['POST', 'GET'])
 def register_page():
     if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        c_password = request.form['confirm-password']
+        if not username or not password or not c_password:
+            return render_template("register.html", error="Username/Password can not be empty!")
         try:
-            username = request.form['username']
-            password = request.form['password']
             usr = User(username, password, True, False)
             insert_users_db(usr)
             flash('You have successfully created an account, now you can login')
