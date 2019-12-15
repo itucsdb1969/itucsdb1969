@@ -23,6 +23,7 @@ from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 from db.appointment.get_appointment_table import get_appointments_db
 from db.appointment.update_appointment_table import update_appointments_db
+from db.player.get_user_player_table import get_player_with_username
 import psycopg2
 
 app = Flask(__name__)
@@ -129,8 +130,10 @@ def all_players_page():
 @app.route("/teams", methods=['GET', 'POST'])
 def all_teams_page():
     if request.method == 'POST':
+        if not request.form['team_name']:
+            teams = get_teams_db()
+            return render_template("teams.html", teams=teams, error="Team name can not be empty!")
         try:
-            print(request.form['team_name'])
             team = Team(request.form['team_name'], request.form['rating'], "yes")
             insert_teams_db(team)
             teams = get_teams_db()
@@ -141,7 +144,6 @@ def all_teams_page():
         return render_template("teams.html", teams=teams)
     elif request.method == 'GET':
         teams = get_teams_db()
-        print(teams[0])
         return render_template("teams.html", teams=teams)
 
 
@@ -149,8 +151,6 @@ def all_teams_page():
 def team():
     if request.method == 'POST':
         team_id = request.form['team_id']
-        print("*************")
-        print(team_id)
         players = get_team_players_with_team_id(team_id)
         return render_template("team.html", infos=players)
     if request.method == 'GET':
@@ -165,14 +165,14 @@ def matches():
         match_id = insert_match_db(match)
         stadiums = get_stadiums_db()
         stadium_id = get_stad_id_with_stad_name(request.form['stadium_name'])
-        print(stadium_id, request.form['stadium_name'])
-        print(request.form['appointment_name'])
         appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
+        if not request.form['appointment_name']:
+            matchs = get_appointments_db()
+            return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums, error="Appointment name can not be empty!")
         try:
             insert_appointments_db(appointment)
             flash("Appointment successfully created!")
             matchs = get_appointments_db()
-            print(matchs)
         except psycopg2.errors.UniqueViolation:
             matchs = get_appointments_db()
             return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums, error="Appointment name already exists!")
@@ -180,15 +180,20 @@ def matches():
     if request.method == 'GET':
         teams = get_teams_db()
         matchs = get_appointments_db()
-        print(matchs)
         stadiums = get_stadiums_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
+
+
 @app.route("/edit_matches", methods=['GET','POST'])
 def edit_matches():
-    print(request.form['user_name'])
-    print(request.form['match_id'])
-    update_appointments_db(request.form['match_id'], request.form['user_name'])
+    username = request.form['user_name']
+    if get_player_with_username(username):
+        update_appointments_db(request.form['match_id'], request.form['user_name'])
+    else:
+        teams = get_teams_db()
+        matchs = get_appointments_db()
+        stadiums = get_stadiums_db()
+        return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums, error="You need to create a player profile!")
     return redirect("matches")
-
 if __name__ == "__main__":
     app.run(debug=True) 
