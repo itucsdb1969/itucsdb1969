@@ -197,36 +197,48 @@ def matches():
         print(matchs)
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
+
 @app.route("/stadiums", methods=['GET', 'POST'])
 def stadiums():
     stadiums = []
     if(request.method == 'GET'):
         stadiums = get_stadiums_db()
         print(stadiums)
-        return render_template("stadiums.html", stadiums = stadiums)
+        return render_template("stadiums.html", stadiums=stadiums)
     if(request.method == 'POST'):
+        if not request.form['stadium_name']:
+            stadiums = get_stadiums_db()
+            return render_template("stadiums.html", stadiums=stadiums, error="Stadium name can not be empty!")
         stadium_name = request.form['stadium_name']
         stadium = Stadium(stadium_name)
         insert_stadiums_db(stadium)
+        flash("Stadium successfully added!")
         stadiums = get_stadiums_db()
-        return render_template("stadiums.html", stadiums = stadiums)
+        return render_template("stadiums.html", stadiums=stadiums)
+
+
 @app.route("/delete_stadiums", methods=['POST'])
 def delete_stadiums():
     stadium_name = request.form['stadium_name'] 
     print("aslkdjaşklsdjaşklsd", stadium_name)
     delete_stadium_db(stadium_name)
     stadiums = get_stadiums_db()
+    flash("Stadium " + stadium_name + " successfully deleted!")
     print(stadiums, request.form['stadium_name'])
-    return render_template("stadiums.html", stadiums= stadiums)
+    return render_template("stadiums.html", stadiums=stadiums)
+
+
 @app.route("/update_stadiums", methods=['POST'])
 def update_stadiums():
     new_stad_name = request.form['new_stadium_name']
     print(new_stad_name)
     print(request.form['old_stadium_name'])
     update_stadiums_db(request.form['old_stadium_name'], new_stad_name)
-    stadiums = []
     stadiums = get_stadiums_db()
-    return render_template("stadiums.html", stadiums = stadiums)
+    flash("Stadium name successfully updated!")
+    return render_template("stadiums.html", stadiums=stadiums)
+
+
 @app.route("/edit_matches", methods=['GET', 'POST'])
 def edit_matches():
     username = request.form['user_name']
