@@ -24,6 +24,7 @@ from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 from db.stadium.delete_stadium_table import delete_stadium_db
 from db.stadium.insert_stadium_table import insert_stadiums_db
+from db.stadium.update_stadium_table import update_stadiums_db
 from db.appointment.insert_appointment_table import insert_appointments_db
 from db.appointment.get_appointment_table import get_appointments_db
 from db.appointment.update_appointment_table import update_appointments_db
@@ -217,6 +218,15 @@ def delete_stadiums():
     stadiums = get_stadiums_db()
     print(stadiums, request.form['stadium_name'])
     return render_template("stadiums.html", stadiums= stadiums)
+@app.route("/update_stadiums", methods=['POST'])
+def update_stadiums():
+    new_stad_name = request.form['new_stadium_name']
+    print(new_stad_name)
+    print(request.form['old_stadium_name'])
+    update_stadiums_db(request.form['old_stadium_name'], new_stad_name)
+    stadiums = []
+    stadiums = get_stadiums_db()
+    return render_template("stadiums.html", stadiums = stadiums)
 @app.route("/edit_matches", methods=['GET', 'POST'])
 def edit_matches():
     username = request.form['user_name']

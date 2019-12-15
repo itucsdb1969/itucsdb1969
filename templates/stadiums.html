@@ -33,8 +33,15 @@
                 <td><h1><span><p style="color:green; text-align: right;">{{stadium[1]}}</p></span></h1></td>
                 <td><h1><span><p style="color:green; text-align: right;">
                 <form action="{{ url_for('delete_stadiums') }}" method="POST">
-                  <input id="team_id" name="stadium_name" type="hidden" value="{{stadium[1]}}">
+                  <input id="stadium" name="stadium_name" type="hidden" value="{{stadium[1]}}">
                   <button type="submit"> Delete </button>
+                </form>
+                </p></span></h1></td>
+                <td><h1><span><p style="color:green; text-align: right;">
+                <form action="{{ url_for('update_stadiums') }}" method="POST">
+                    <input id="stadium" name="new_stadium_name" value="{{request.form.new_stadium_name}}">
+                    <input id="stadium" name="old_stadium_name" type="hidden" value="{{stadium[1]}}">
+                    <br><button type="submit">Update</button>
                 </form>
                 </p></span></h1></td>
         </tr>
