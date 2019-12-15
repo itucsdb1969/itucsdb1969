@@ -45,6 +45,7 @@ def login():
         if passwd_from_db:
             if password_form == passwd_from_db[0]:
                 session['username'] = username
+                flash("You have successfully logged in!")
                 return render_template("home.html")
             else:
                 return render_template("login.html", error= "Invalid Password Error!")
