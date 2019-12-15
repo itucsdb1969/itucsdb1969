@@ -118,36 +118,41 @@ def all_players_page():
     players = []
     players = get_players_db()
     print("players:", players)
-    return render_template("players.html", players = players)
+    return render_template("players.html", players=players)
 
 
 @app.route("/teams", methods=['GET', 'POST'])
 def all_teams_page():
     if request.method == 'POST':
-        print(request.form['team_name'])
-        team = Team(request.form['team_name'], request.form['rating'], "yes")
-        insert_teams_db(team)
-        teams = get_teams_db()
-        return render_template("teams.html",teams = teams)
+        try:
+            print(request.form['team_name'])
+            team = Team(request.form['team_name'], request.form['rating'], "yes")
+            insert_teams_db(team)
+            teams = get_teams_db()
+            flash("Team successfully added!")
+        except psycopg2.errors.UniqueViolation:
+            teams = get_teams_db()
+            return render_template("teams.html", teams=teams, error="Team name must be unique!")
+        return render_template("teams.html", teams=teams)
     elif request.method == 'GET':
         teams = get_teams_db()
         print(teams[0])
-        return render_template("teams.html", teams = teams)
+        return render_template("teams.html", teams=teams)
 
 
-@app.route("/team", methods=['GET','POST'])
+@app.route("/team", methods=['GET', 'POST'])
 def team():
     if request.method == 'POST':
         team_id = request.form['team_id']
         print("*************")
         print(team_id)
         players = get_team_players_with_team_id(team_id)
-        return render_template("team.html", infos = players)
+        return render_template("team.html", infos=players)
     if request.method == 'GET':
         return render_template("team.html")
 
 
-@app.route("/matches", methods= ['GET', 'POST'])
+@app.route("/matches", methods=['GET', 'POST'])
 def matches_page():
     if request.method == 'POST':
         teams = get_teams_db()
