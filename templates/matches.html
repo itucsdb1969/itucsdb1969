@@ -4,7 +4,7 @@
 
 <div style="text-align: right;">
     <form action="" method="POST">
-        <input type="text" name="team_name" class="form-control" value={{request.form.appointment_name}}>
+        <input type="text" name="appointment_name" class="form-control" value={{request.form.appointment_name}}>
         <select name="team_home">
         {% for team in teams %}
             <option value={{team[1]}}>{{team[1]}}</option>
@@ -17,9 +17,12 @@
         </select>
         <select name="stadium_name">
         {% for stadium in stadiums %}
-            <option value={{stadium[1]}}>{{stadium[1]}}</option>
+            <option value='{{stadium[1]}}'>{{stadium[1]}}</option>
         {% endfor %}
         </select>
+        <input type="time" name="start_time">
+        <input type="time" name="end_time">
+        <br>
         <button type="submit"> Create Match </button>
     </form>
 </div>

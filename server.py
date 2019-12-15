@@ -12,12 +12,15 @@ from model.user import User
 from model.player import Player
 from model.team import Team
 from model.match import Match
+from model.appointment import Appointment
+from db.appointment.insert_appointment_table import insert_appointments_db
 from db.team.get_team_id import get_team_id_with_teamname
 from db.team.get_team_player_table import get_team_players_with_team_id
 from db.team.insert_team_table import insert_teams_db
 from db.match.insert_match_table import insert_match_db
 from db.match.get_match_table import get_match_db
 from db.stadium.get_stadium_table import get_stadiums_db
+from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 import psycopg2
 
 app = Flask(__name__)
@@ -157,9 +160,14 @@ def matches_page():
     if request.method == 'POST':
         teams = get_teams_db()
         match = Match(request.form['team_home'], request.form['team_away'])
-        insert_match_db(match)
-        matchs = get_match_db()
+        match_id = insert_match_db(match)
         stadiums = get_stadiums_db()
+        stadium_id = get_stad_id_with_stad_name(request.form['stadium_name'])
+        print(stadium_id, request.form['stadium_name'])
+        print(request.form['appointment_name'])
+        appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
+        insert_appointments_db(appointment)
+        matchs = get_match_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
     if request.method == 'GET':
         teams = get_teams_db()

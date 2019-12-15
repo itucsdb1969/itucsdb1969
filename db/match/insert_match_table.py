@@ -11,6 +11,7 @@ def insert_match_db(match):
     url = get_db_url()
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        match_id = cursor.execute(query, (team1_id, team2_id))
+        cursor.execute(query, (team1_id, team2_id, ))
+        match_id = cursor.fetchone()
         cursor.close()
         return match_id

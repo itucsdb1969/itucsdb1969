@@ -91,7 +91,7 @@ if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
     #url = "dbname='itucsdb1969' user='postgres' host='localhost' password='postgres'"
     #url = "dbname='itucsdb1969' user='postgres' host='localhost' password='123456'"
-    #initialize(url)
+    initialize(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
