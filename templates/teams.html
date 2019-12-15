@@ -29,7 +29,8 @@
   </tr>
 {% if teams %}
 {% for team2 in teams %}
-        <tr>
+        {% if team2[0] != 1 %}
+          <tr>
                 <td><h1><span><p style="color:green; text-align: right;">{{team2[1]}}</p></span></h1></td>
                 <td><h1><span><p style="color:green; text-align: right;">{{team2[2]}}</p></span></h1></td>
                 <td><h1><span><p style="color:green; text-align: right;">
@@ -39,6 +40,7 @@
                 </form>
                 </p></span></h1></td>
         </tr>
+        {% endif %}
 {% endfor %}
 
 {% endif %}

@@ -64,6 +64,7 @@ INIT_STATEMENTS = [
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE RESTRICT ON UPDATE CASCADE ,
             FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE RESTRICT ON UPDATE CASCADE   
         )""",
+    """INSERT INTO TEAM (NAME, RATING) VALUES('FindMeATeam', '0.0');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Galatasaray', '5.0');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Fenerbahce', '4.5');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Besiktas', '4.2');""",
@@ -90,7 +91,7 @@ def initialize(url):
 if __name__ == "__main__":
     url = os.getenv("DATABASE_URL")
     #url = "dbname='itucsdb1969' user='postgres' host='localhost' password='postgres'"
-    #url = "dbname='itucsdb1969' user='postgres' host='localhost' password='123456'"
+    #url = "dbname='postgres' user='postgres' host='localhost' password='123456'"
     initialize(url)
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)

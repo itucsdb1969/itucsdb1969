@@ -6,11 +6,13 @@
     <form action="" method="POST">
         <input type="text" name="appointment_name" class="form-control" value={{request.form.appointment_name}}>
         <select name="team_home">
+            <option value="FindMeATeam">FindMeATeam</option> 
         {% for team in teams %}
             <option value={{team[1]}}>{{team[1]}}</option>
         {% endfor %}
         </select>
         <select name="team_away">
+            <option value="FindMeATeam">FindMeATeam</option>
         {% for team in teams %}
             <option value={{team[1]}}>{{team[1]}}</option>
         {% endfor %}
@@ -27,13 +29,26 @@
     </form>
 </div>
 {% endif %}
-<table>
+<table id="players" style="margin-right: 185px;">
     <tr>
         <th>Appointment Name</th>
         <th>Home Team</th>
         <th>Away Team</th>
+        <th>Stadium Name</th>
         <th>Start Time</th>
         <th>End Time</th> 
     </tr>
+    {% if matchs %}
+        {% for match in matchs %}
+                <tr>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[1]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[2]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[3]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[4]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[5]}}</p></span></h1></td>
+                        <td><h1><span><p style="color:green; text-align: right;">{{match[6]}}</p></span></h1></td>
+                </tr>
+        {% endfor %}
+    {% endif %}
 </table>
 {% endblock %}

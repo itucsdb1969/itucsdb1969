@@ -169,6 +169,7 @@ def matches_page():
         appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
         insert_appointments_db(appointment)
         matchs = get_appointments_db()
+        print(matchs)
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
     if request.method == 'GET':
         teams = get_teams_db()
