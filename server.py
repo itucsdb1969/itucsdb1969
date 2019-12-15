@@ -10,6 +10,8 @@ from model.appointment import Appointment
 from model.stadium import Stadium
 from db.user.insert_user_table import insert_users_db
 from db.user.get_user_pw import get_user_pw_with_username
+from db.user.update_user_table import update_users_db
+from db.user.delete_user_table import delete_users_db
 from db.utils.get_profile_status import check_profile_exists
 from db.match.insert_match_table import insert_match_db
 from db.player.insert_player_table import insert_players_db
@@ -130,7 +132,23 @@ def delete_player():
     delete_players_db(usrname)
     return render_template("home.html")
 
-
+@app.route("/my_account", methods=['GET','POST'])
+def my_account():
+    if(request.method == 'GET'):
+        return render_template("my_account.html")
+    if(request.method == 'POST'):
+        password = request.form['new_password']
+        c_password = request.form['new_password_conf']
+        if password != c_password:
+            return render_template("my_account.html", error="Passwords do not match!")
+        password = hashlib.sha256(password.encode()).hexdigest()
+        update_users_db(session['username'], password)
+        return render_template("home.html")
+@app.route("/delete_my_account", methods=['POST'])
+def delete_my_account():
+    delete_users_db(session['username'])
+    session.pop('username', None)
+    return render_template("home.html")
 @app.route("/players")
 def all_players_page():
     players = []
