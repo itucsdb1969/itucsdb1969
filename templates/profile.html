@@ -60,7 +60,9 @@
         <select name="team_name">
                 {% if teams %}
                 {% for team in teams %}
+                    {% if team[1] != "FindMeATeam" %}
                     <option value="{{team[1]}}">{{team[1]}}</option>
+                    {% endif %}
                 {%endfor%}
                 {% endif %}
         </select>

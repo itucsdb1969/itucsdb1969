@@ -6,13 +6,11 @@
     <form action="" method="POST">
         <input type="text" name="appointment_name" class="form-control" value={{request.form.appointment_name}}>
         <select name="team_home">
-            <option value="FindMeATeam">FindMeATeam</option> 
         {% for team in teams %}
             <option value={{team[1]}}>{{team[1]}}</option>
         {% endfor %}
         </select>
         <select name="team_away">
-            <option value="FindMeATeam">FindMeATeam</option>
         {% for team in teams %}
             <option value={{team[1]}}>{{team[1]}}</option>
         {% endfor %}
