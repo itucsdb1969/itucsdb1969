@@ -168,9 +168,14 @@ def matches():
         print(stadium_id, request.form['stadium_name'])
         print(request.form['appointment_name'])
         appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'])
-        insert_appointments_db(appointment)
-        matchs = get_appointments_db()
-        print(matchs)
+        try:
+            insert_appointments_db(appointment)
+            flash("Appointment successfully created!")
+            matchs = get_appointments_db()
+            print(matchs)
+        except psycopg2.errors.UniqueViolation:
+            matchs = get_appointments_db()
+            return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums, error="Appointment name already exists!")
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
     if request.method == 'GET':
         teams = get_teams_db()
