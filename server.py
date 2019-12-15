@@ -1,4 +1,5 @@
 import psycopg2
+import hashlib 
 from flask import Flask, request, session, flash
 from flask import render_template, redirect
 from model.user import User
@@ -49,6 +50,7 @@ def login():
         passwd_from_db = get_user_pw_with_username(username) 
         # print(passwd_from_db)
         if passwd_from_db:
+            password_form = hashlib.sha256(password_form.encode()).hexdigest()
             if password_form == passwd_from_db[0]:
                 session['username'] = username
                 flash("You have successfully logged in!")
@@ -68,7 +70,11 @@ def register_page():
         c_password = request.form['confirm-password']
         if not username or not password or not c_password:
             return render_template("register.html", error="Username/Password can not be empty!")
+        if password != c_password:
+            return render_template("register.html", error="Passwords do not match!")
         try:
+            password = hashlib.sha256(password.encode()).hexdigest()
+            print(password)
             usr = User(username, password, True, False)
             insert_users_db(usr)
             flash('You have successfully created an account, now you can login')
