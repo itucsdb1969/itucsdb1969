@@ -66,12 +66,16 @@
                         <td><h1><span><p style="color:green; text-align: right;">{{match[1]}}</p></span></h1></td>
                         <td><h1><span><p style="color:green; text-align: right;">{{match[2]}}</p></span></h1></td>
                         {% if match[3] == 'FindMeATeam' %}
+                        {% if session['username'] %}
                         <td><h1><span><p style="color:green; text-align: right;"><form action="{{url_for('edit_matches')}}" name="join_to_match" method="POST">
                                                                                     <input id="user_name" name="user_name" type="hidden" value="{{session['username']}}">
                                                                                     <input id="match_id" name="match_id" type="hidden" value="{{match[0]}}">
                                                                                     <button type="submit"> Join! </button>
                                                                                    </form>
-                                       </p></span></h1></td>
+                        </p></span></h1></td>
+                        {% else %}
+                        <td><h1><span><p style="color:green; text-align: right;">Login!</p></span></h1></td>
+                        {% endif %}
                         {% else %}
                         <td><h1><span><p style="color:green; text-align: right;">{{match[3]}}</p></span></h1></td>
                         {% endif %}

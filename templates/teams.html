@@ -27,37 +27,39 @@
     <th>Rating</th>
     <th>Details</th>
   </tr>
-{% if teams %}
-{% for team2 in teams %}
-        {% if team2[0] != 1 %}
-          <tr>
-                <td><h1><span><p style="color:green; text-align: right;">{{team2[1]}}</p></span></h1></td>
-                <td><h1><span><p style="color:green; text-align: right;">{{team2[2]}}</p></span></h1></td>
-                <td><h1><span><p style="color:green; text-align: right;">
-                <form action="{{ url_for('team') }}" method="POST">
-                  <input id="team_id" name="team_id" type="hidden" value="{{team2[0]}}">
-                  <button type="submit"> Info </button>
-                </form>
-                </p></span></h1></td>
-        </tr>
-        {% endif %}
-{% endfor %}
-
-{% endif %}
-<tr>
-<div style="text-align: right;">
-<form action="" method="POST">
-  <input type="text" name="team_name" class="form-control" value={{request.form.team_name}}>
-  <select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-  <button type="submit"> Create Team </button>
-</form>
-</div>
-</tr>
-</table>
-{% endblock %}
+  {% if teams %}
+  {% for team2 in teams %}
+  {% if team2[0] != 1 %}
+  <tr>
+    <td><h1><span><p style="color:green; text-align: right;">{{team2[1]}}</p></span></h1></td>
+    <td><h1><span><p style="color:green; text-align: right;">{{team2[2]}}</p></span></h1></td>
+    <td><h1><span><p style="color:green; text-align: right;">
+        <form action="{{ url_for('team') }}" method="POST">
+          <input id="team_id" name="team_id" type="hidden" value="{{team2[0]}}">
+          <button type="submit"> Info </button>
+        </form>
+      </p></span></h1></td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+    
+    {% endif %}
+    {% if session['username'] %}
+    <tr>
+      <div style="text-align: right;">
+          <form action="" method="POST">
+            <input type="text" name="team_name" class="form-control" value={{request.form.team_name}}>
+            <select name="rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button type="submit"> Create Team </button>
+          </form>
+        </div>
+      </tr>
+    </table>
+    {% endif %}
+    {% endblock %}
