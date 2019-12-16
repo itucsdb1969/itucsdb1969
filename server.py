@@ -238,7 +238,6 @@ def stadiums():
 @app.route("/delete_stadiums", methods=['POST'])
 def delete_stadiums():
     stadium_name = request.form['stadium_name'] 
-    print("aslkdjaşklsdjaşklsd", stadium_name)
     delete_stadium_db(stadium_name)
     stadiums = get_stadiums_db()
     flash("Stadium " + stadium_name + " successfully deleted!")
