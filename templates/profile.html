@@ -32,15 +32,15 @@
         <input type="text" name="age" class="form-control" value={{request.form.age}}>
     </div>
     <div style="text-align:center;">
-        <select name="team_name">
+        <form action="">
             {% if teams %}
             {% for team in teams %}
                 {% if team[1] != "FindMeATeam" %}
-                <option value="{{team[1]}}">{{team[1]}}</option>
+                    <input type="radio" name="team_name" value="{{team[1]}}">{{team[1]}}<br>
                 {% endif %}
             {%endfor%}
             {% endif %}
-        </select>
+        </form>
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
 
