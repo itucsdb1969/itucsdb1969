@@ -150,6 +150,13 @@ def delete_my_account():
     session.pop('username', None)
     return render_template("home.html")
 
+@app.route("/upload_image", methods=['POST'])
+def upload_image():
+    if request.method=='POST':
+        if request.files:
+            image = request.files["image"]
+            print(image)
+    return render_template("my_account.html")
 
 @app.route("/players")
 def all_players_page():
