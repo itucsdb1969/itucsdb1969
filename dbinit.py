@@ -39,6 +39,8 @@ INIT_STATEMENTS = [
             name VARCHAR (50) NOT NULL,
             rating NUMERIC(3,2),
             age INTEGER,
+            country VARCHAR (50),
+            phone_number VARCHAR (10),
             FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE,
             FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
@@ -49,7 +51,9 @@ INIT_STATEMENTS = [
             team1_id INTEGER,
             team2_id INTEGER,
             created_at VARCHAR (10),
+            updated_at VARCHAR (10),
             date VARCHAR (10),
+            referee VARCHAR (20),
             length INTEGER,
             FOREIGN KEY (team1_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE ,
             FOREIGN KEY (team2_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -72,6 +76,7 @@ INIT_STATEMENTS = [
             start_time VARCHAR (5) NOT NULL ,
             end_time VARCHAR (5) NOT NULL ,
             date VARCHAR (10) NOT NULL ,
+            created_at VARCHAR (10),
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE ,
             FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE CASCADE ON UPDATE CASCADE   
         )""",
