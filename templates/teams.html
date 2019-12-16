@@ -21,7 +21,7 @@
      {% endif %}
 {% endwith %}
 
-<table id="players">
+<table id="players" class="heavyTable">
   <tr>
     <th>Team</th>
     <th>Rating</th>
@@ -31,14 +31,14 @@
   {% for team2 in teams %}
   {% if team2[0] != 1 %}
   <tr>
-    <td><h1><span><p style="color:green; text-align: right;">{{team2[1]}}</p></span></h1></td>
-    <td><h1><span><p style="color:green; text-align: right;">{{team2[2]}}</p></span></h1></td>
-    <td><h1><span><p style="color:green; text-align: right;">
+    <td><h1> {{team2[1]}}</h1></td>
+    <td><h1> {{team2[2]}}</h1></td>
+    <td><h1>
         <form action="{{ url_for('team') }}" method="POST">
           <input id="team_id" name="team_id" type="hidden" value="{{team2[0]}}">
           <button type="submit"> Info </button>
         </form>
-      </p></span></h1></td>
+     </span></h1></td>
     </tr>
     {% endif %}
     {% endfor %}
