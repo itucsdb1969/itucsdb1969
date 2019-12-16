@@ -53,7 +53,6 @@ def login():
         if not username or not password_form:
             return render_template("login.html", error="Username/Password can not be empty!")
         passwd_from_db = get_user_pw_with_username(username) 
-        # print(passwd_from_db)
         if passwd_from_db:
             password_form = hashlib.sha256(password_form.encode()).hexdigest()
             if password_form == passwd_from_db[0]:
@@ -79,13 +78,11 @@ def register_page():
             return render_template("register.html", error="Passwords do not match!")
         try:
             password = hashlib.sha256(password.encode()).hexdigest()
-            print(password)
             usr = User(username, password, True, False)
             insert_users_db(usr)
             flash('You have successfully created an account, now you can login')
             return render_template("home.html")
         except psycopg2.errors.UniqueViolation:
-            # print("Username already exists, pick different one!")
             return render_template("register.html", error="Username already exists, pick different one!")
     return render_template("register.html")
 
@@ -99,10 +96,8 @@ def logout():
 
 @app.route("/profile", methods=['POST', 'GET'])
 def profile_sets():
-    teams = []
     teams = get_teams_db()
     status = int(check_profile_exists(session['username']))
-    # print("status: ", status)
     if request.method == 'POST':
         full_name = request.form['full_name']
         age = request.form['age']
@@ -132,11 +127,12 @@ def delete_player():
     delete_players_db(usrname)
     return render_template("home.html")
 
+
 @app.route("/my_account", methods=['GET','POST'])
 def my_account():
-    if(request.method == 'GET'):
+    if request.method == 'GET':
         return render_template("my_account.html")
-    if(request.method == 'POST'):
+    if request.method == 'POST':
         password = request.form['new_password']
         c_password = request.form['new_password_conf']
         if password != c_password:
@@ -144,16 +140,18 @@ def my_account():
         password = hashlib.sha256(password.encode()).hexdigest()
         update_users_db(session['username'], password)
         return render_template("home.html")
+
+
 @app.route("/delete_my_account", methods=['POST'])
 def delete_my_account():
     delete_users_db(session['username'])
     session.pop('username', None)
     return render_template("home.html")
+
+
 @app.route("/players")
 def all_players_page():
-    players = []
     players = get_players_db()
-    print("players:", players)
     return render_template("players.html", players=players)
 
 
@@ -195,7 +193,6 @@ def matches():
         match_id = insert_match_db(match)
         stadiums = get_stadiums_db()
         stadium_id = get_stad_id_with_stad_name(request.form['stadium_name'])
-        print(request.form['match_date'])
         appointment = Appointment(request.form['appointment_name'], match_id, stadium_id, request.form['start_time'], request.form['end_time'], request.form['match_date'])
         if not request.form['appointment_name']:
             matchs = get_appointments_db()
@@ -212,18 +209,15 @@ def matches():
         teams = get_teams_db()
         matchs = get_appointments_db()
         stadiums = get_stadiums_db()
-        print(matchs)
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
 
 @app.route("/stadiums", methods=['GET', 'POST'])
 def stadiums():
-    stadiums = []
-    if(request.method == 'GET'):
+    if request.method == 'GET':
         stadiums = get_stadiums_db()
-        print(stadiums)
         return render_template("stadiums.html", stadiums=stadiums)
-    if(request.method == 'POST'):
+    if request.method == 'POST':
         if not request.form['stadium_name']:
             stadiums = get_stadiums_db()
             return render_template("stadiums.html", stadiums=stadiums, error="Stadium name can not be empty!")
@@ -241,15 +235,12 @@ def delete_stadiums():
     delete_stadium_db(stadium_name)
     stadiums = get_stadiums_db()
     flash("Stadium " + stadium_name + " successfully deleted!")
-    print(stadiums, request.form['stadium_name'])
     return render_template("stadiums.html", stadiums=stadiums)
 
 
 @app.route("/update_stadiums", methods=['POST'])
 def update_stadiums():
     new_stad_name = request.form['new_stadium_name']
-    print(new_stad_name)
-    print(request.form['old_stadium_name'])
     update_stadiums_db(request.form['old_stadium_name'], new_stad_name)
     stadiums = get_stadiums_db()
     flash("Stadium name successfully updated!")
