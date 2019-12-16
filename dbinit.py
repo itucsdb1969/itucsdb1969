@@ -17,6 +17,7 @@ INIT_STATEMENTS = [
             user_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR(20) UNIQUE NOT NULL,
             password VARCHAR(64),
+            email VARCHAR(200),
             is_active BOOLEAN DEFAULT TRUE,
             is_admin BOOLEAN DEFAULT FALSE
         )""",
@@ -26,6 +27,8 @@ INIT_STATEMENTS = [
             team_id SERIAL NOT NULL PRIMARY KEY,
             name VARCHAR (50) UNIQUE NOT NULL,
             rating NUMERIC(3,2),
+            created_at VARCHAR (10),
+            max_player_number INTEGER,
             is_available BOOLEAN DEFAULT TRUE
         )""",
     
@@ -45,13 +48,20 @@ INIT_STATEMENTS = [
             match_id SERIAL NOT NULL PRIMARY KEY,
             team1_id INTEGER,
             team2_id INTEGER,
+            created_at VARCHAR (10),
+            date VARCHAR (10),
+            length INTEGER,
             FOREIGN KEY (team1_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE ,
             FOREIGN KEY (team2_id) REFERENCES Team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
         )""",
 
     """CREATE TABLE IF NOT EXISTS Stadium(
             stadium_id SERIAL NOT NULL PRIMARY KEY,
-            name VARCHAR (50) UNIQUE NOT NULL
+            name VARCHAR (50) UNIQUE NOT NULL,
+            city VARCHAR (50),
+            created_at VARCHAR (10),
+            is_available BOOLEAN DEFAULT TRUE,
+            rating NUMERIC(3,2)
         )""",
 
     """CREATE TABLE IF NOT EXISTS Appointment(
