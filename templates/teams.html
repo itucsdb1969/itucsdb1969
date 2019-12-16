@@ -26,6 +26,8 @@
     <th>Team</th>
     <th>Rating</th>
     <th>Details</th>
+    <th>Delete</th>
+    <th>Update</th>
   </tr>
   {% if teams %}
   {% for team2 in teams %}
@@ -39,6 +41,24 @@
           <button type="submit"> Info </button>
         </form>
      </span></h1></td>
+     {% if session['username'] %}
+                <td><h1><span>
+                <form action="{{ url_for('delete_team') }}" method="POST">
+                  <input id="team" name="delete_team" type="hidden" value="{{team2[1]}}">
+                  <button type="submit"> Delete </button>
+                </form>
+                </span></h1></td>
+                <td><h1><span>
+                <form action="{{ url_for('update_team') }}" method="POST">
+                    <input id="team" name="new_team_name" value="{{request.form.new_team_name}}">
+                    <input id="team" name="old_team_name" type="hidden" value="{{team2[1]}}">
+                    <br><button type="submit">Update</button>
+                </form>
+               </span></h1></td>
+                {% else %}
+                <td><h1><span>Log in!</span></h1></td>
+                <td><h1><span>Log in!</span></h1></td>
+                {% endif %}
     </tr>
     {% endif %}
     {% endfor %}

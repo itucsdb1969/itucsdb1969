@@ -22,6 +22,8 @@ from db.player.get_user_player_table import get_player_with_username
 from db.team.get_team_table import get_teams_db
 from db.team.get_team_player_table import get_team_players_with_team_id
 from db.team.insert_team_table import insert_teams_db
+from db.team.delete_team_table import delete_team_db
+from db.team.update_team_table import update_teams_db
 from db.stadium.get_stadium_table import get_stadiums_db
 from db.stadium.get_stadium_id import get_stad_id_with_stad_name
 from db.stadium.delete_stadium_table import delete_stadium_db
@@ -30,6 +32,7 @@ from db.stadium.update_stadium_table import update_stadiums_db
 from db.appointment.insert_appointment_table import insert_appointments_db
 from db.appointment.get_appointment_table import get_appointments_db
 from db.appointment.update_appointment_table import update_appointments_db
+from db.appointment.delete_appointment_table import delete_appointment_db
 app = Flask(__name__)
 app.secret_key = 'ITUCSDB1969'
 result = []
@@ -182,6 +185,20 @@ def all_teams_page():
     elif request.method == 'GET':
         teams = get_teams_db()
         return render_template("teams.html", teams=teams)
+@app.route("/delete_team", methods=['POST'])
+def delete_team():
+    if request.method == 'POST':
+        team_name = request.form['delete_team']
+        delete_team_db(team_name)
+    return redirect("teams")
+
+@app.route("/update_team", methods=['POST'])
+def update_team():
+    if request.method == 'POST':
+        old_team_name = request.form['old_team_name']
+        new_team_name = request.form['new_team_name']
+        update_teams_db(new_team_name, old_team_name)
+    return redirect("teams")
 
 
 @app.route("/team", methods=['GET', 'POST'])
@@ -220,6 +237,12 @@ def matches():
         stadiums = get_stadiums_db()
         return render_template("matches.html", matchs=matchs, teams=teams, stadiums=stadiums)
 
+@app.route("/delete_matches", methods=['POST'])
+def delete_matches():
+    if request.method == 'POST':
+        name = request.form['delete_match']
+        delete_appointment_db(name)
+    return redirect("matches")
 
 @app.route("/stadiums", methods=['GET', 'POST'])
 def stadiums():
