@@ -13,6 +13,7 @@ table {
     overflow:auto;
     float:center;
 }​
+
 /*itucsdb*/
 #players {
   width: 100%;
@@ -34,6 +35,15 @@ color: black;
 #players th {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+#matches td{
+color: black;
+}
+#matches th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
 }
 
 
