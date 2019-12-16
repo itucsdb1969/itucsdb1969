@@ -128,7 +128,7 @@ def delete_player():
     return render_template("home.html")
 
 
-@app.route("/my_account", methods=['GET','POST'])
+@app.route("/my_account", methods=['GET', 'POST'])
 def my_account():
     if request.method == 'GET':
         return render_template("my_account.html")
@@ -138,12 +138,14 @@ def my_account():
         if password != c_password:
             return render_template("my_account.html", error="Passwords do not match!")
         password = hashlib.sha256(password.encode()).hexdigest()
+        flash("Password successfully updated!")
         update_users_db(session['username'], password)
         return render_template("home.html")
 
 
 @app.route("/delete_my_account", methods=['POST'])
 def delete_my_account():
+    flash("User successfully deleted!")
     delete_users_db(session['username'])
     session.pop('username', None)
     return render_template("home.html")
@@ -223,10 +225,15 @@ def stadiums():
             return render_template("stadiums.html", stadiums=stadiums, error="Stadium name can not be empty!")
         stadium_name = request.form['stadium_name']
         stadium = Stadium(stadium_name)
-        insert_stadiums_db(stadium)
-        flash("Stadium successfully added!")
-        stadiums = get_stadiums_db()
-        return render_template("stadiums.html", stadiums=stadiums)
+        try:
+            insert_stadiums_db(stadium)
+            flash("Stadium successfully added!")
+            stadiums = get_stadiums_db()
+            return render_template("stadiums.html", stadiums=stadiums)
+        except psycopg2.errors.UniqueViolation:
+            stadiums = get_stadiums_db()
+            return render_template("stadiums.html", stadiums=stadiums, error="Stadium name must be different!")
+
 
 
 @app.route("/delete_stadiums", methods=['POST'])
