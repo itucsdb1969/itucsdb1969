@@ -21,7 +21,7 @@ INIT_STATEMENTS = [
             is_active BOOLEAN DEFAULT TRUE,
             is_admin BOOLEAN DEFAULT FALSE
         )""",
-    
+
     """
     CREATE TABLE IF NOT EXISTS Team(
             team_id SERIAL NOT NULL PRIMARY KEY,
@@ -75,6 +75,7 @@ INIT_STATEMENTS = [
             FOREIGN KEY (match_id) REFERENCES Match(match_id) ON DELETE CASCADE ON UPDATE CASCADE ,
             FOREIGN KEY (stadium_id) REFERENCES Stadium(stadium_id) ON DELETE CASCADE ON UPDATE CASCADE   
         )""",
+
     """INSERT INTO TEAM (NAME, RATING) VALUES('FindMeATeam', '0.0');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Galatasaray', '5.0');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Fenerbahce', '4.5');""",
@@ -85,7 +86,11 @@ INIT_STATEMENTS = [
     """INSERT INTO TEAM (NAME, RATING) VALUES('Malatyaspor', '1.5');""",
     """INSERT INTO TEAM (NAME, RATING) VALUES('Bursaspor', '0.5');""",
     """INSERT INTO STADIUM (NAME) VALUES ('Ali Sami Yen Spor Kompleksi TT Arena');""",
-    """INSERT INTO STADIUM (NAME) VALUES ('Sukru Saracoglu Stadyumu');"""
+    """INSERT INTO STADIUM (NAME) VALUES ('Sukru Saracoglu Stadyumu');""",
+    """INSERT INTO MATCH (TEAM1_ID, TEAM2_ID) VALUES ('2','3');""",
+    """INSERT INTO APPOINTMENT (NAME, MATCH_ID, STADIUM_ID, START_TIME, END_TIME, DATE)
+                VALUES('Halisaha', '1', '1', '19:00', '21:00', '2019-02-01');"""
+
 ]
 
 
