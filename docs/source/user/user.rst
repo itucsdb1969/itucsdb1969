@@ -9,7 +9,7 @@ Player Page
 It is how player page looks like at first. This page is used for creating player profiles for each user.
 Name, age, team information entered in this page.
 
-.. figure:: photos/user/upload_player.png
+.. figure:: photos/user/update_player.png
 
 It is how player page looks like after creating a player profile.
 Here, a player can change its name, age, and team information and also player can be deleted.
