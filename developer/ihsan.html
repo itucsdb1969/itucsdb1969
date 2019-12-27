@@ -1,0 +1,571 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by İhsan SOYDEMİR &mdash; ITUCSDB1969 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Hasan Hüseyin KAÇMAZ" href="huseyin.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1969
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#database-design">Database Design</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by İhsan SOYDEMİR</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions-in-db">Functions in db</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html">Parts Implemented by Hasan Hüseyin KAÇMAZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1969</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by İhsan SOYDEMİR</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/ihsan.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-ihsan-soydemir">
+<h1>Parts Implemented by İhsan SOYDEMİR<a class="headerlink" href="#parts-implemented-by-ihsan-soydemir" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions-in-db">
+<h2>Functions in db<a class="headerlink" href="#functions-in-db" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="user">
+<h3>user()<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insert_appointments_db</span><span class="p">(</span><span class="n">appointment</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO APPOINTMENT (name, match_id, stadium_id, start_time, end_time, date) VALUES(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">appointment</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">match_id</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">stadium_id</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">update_appointments_db</span><span class="p">(</span><span class="n">appointment_id</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; UPDATE MATCH SET</span>
+<span class="s2">                 team2_id = (select team_id from player where user_id = </span><span class="si">%s</span><span class="s2">)</span>
+<span class="s2">                 WHERE match_id = (select match_id from APPOINTMENT</span>
+<span class="s2">                 where appointment_id = </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">appointment_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">get_appointments_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;select a.appointment_id, a.name, t1.name, t2.name, s.name, a.start_time, a.end_time, a.date</span>
+<span class="s2">                    from appointment as a, match as m, stadium as s, team as t1, team as t2</span>
+<span class="s2">                where (m.match_id = a.match_id AND</span>
+<span class="s2">                            a.stadium_id = s.stadium_id AND</span>
+<span class="s2">                            (( m.team1_id = t1.team_id AND m.team2_id = t2.team_id ) ) )&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">appointments</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">appointments</span>
+<span class="k">def</span> <span class="nf">delete_appointment_db</span><span class="p">(</span><span class="n">appointment_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM Appointment WHERE name = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">appointment_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>CRUD operations for user table implemented.</p>
+</div>
+<div class="section" id="player">
+<h3>player()<a class="headerlink" href="#player" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_players_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;select * from player</span>
+<span class="s2">                INNER JOIN team</span>
+<span class="s2">                ON team.team_id = player.team_id&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">users</span>
+
+<span class="k">def</span> <span class="nf">delete_players_db</span><span class="p">(</span><span class="n">user_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM player WHERE user_id = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">get_player_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;select count(*) from player where user_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">db_url</span><span class="o">.</span><span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">exists</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exists:&quot;</span><span class="p">,</span> <span class="n">exists</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">exists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">insert_players_db</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">team_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">team_id</span> <span class="o">=</span> <span class="n">get_team_id_with_teamname</span><span class="p">(</span><span class="n">team_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO PLAYER (name, age, user_id, team_id ) VALUES(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2"> )&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">player</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">team_id</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">update_players_db</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">team_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">team_id</span> <span class="o">=</span> <span class="n">get_team_id_with_teamname</span><span class="p">(</span><span class="n">team_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE Player SET name = </span><span class="si">%s</span><span class="s2">, age = </span><span class="si">%s</span><span class="s2">, team_id = </span><span class="si">%s</span><span class="s2"> WHERE user_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">player</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">team_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>CRUD operations for player table implemented.</p>
+</div>
+<div class="section" id="team">
+<h3>team()<a class="headerlink" href="#team" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_teams_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Team&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">users</span>
+<span class="k">def</span> <span class="nf">insert_teams_db</span><span class="p">(</span><span class="n">team</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO TEAM (name, rating) VALUES(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">team</span><span class="o">.</span><span class="n">rating</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">update_teams_db</span><span class="p">(</span><span class="n">team_name</span><span class="p">,</span> <span class="n">old_team_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE Team SET name = </span><span class="si">%s</span><span class="s2"> WHERE name = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team_name</span><span class="p">,</span> <span class="n">old_team_name</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">delete_team_db</span><span class="p">(</span><span class="n">team_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM Team WHERE name = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>CRUD operations for team table implemented.</p>
+</div>
+<div class="section" id="team-extras">
+<h3>team_extras()<a class="headerlink" href="#team-extras" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_team_id_with_teamname</span><span class="p">(</span><span class="n">team_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT team_id FROM Team WHERE name = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">team_id</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;team_id: &quot;</span><span class="p">,</span> <span class="n">team_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">team_id</span>
+
+<span class="k">def</span> <span class="nf">get_team_players_with_team_id</span><span class="p">(</span><span class="n">team_id</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT distinct p.name, p.rating, p.age FROM Team as t, Player as p WHERE p.team_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">players</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">players</span>
+</pre></div>
+</div>
+<p>Two extra functions implemented: To get team players using team id, to get team id with team name.</p>
+</div>
+<div class="section" id="match">
+<h3>match()<a class="headerlink" href="#match" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_match_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Match&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">users</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">users</span>
+<span class="k">def</span> <span class="nf">insert_match_db</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+    <span class="n">team1_id</span> <span class="o">=</span> <span class="n">get_team_id_with_teamname</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">team1_name</span><span class="p">)</span>
+    <span class="n">team2_id</span> <span class="o">=</span> <span class="n">get_team_id_with_teamname</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">team2_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO MATCH (team1_id, team2_id) VALUES(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">) RETURNING match_id;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">team1_id</span><span class="p">,</span> <span class="n">team2_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">match_id</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">match_id</span>
+<span class="k">def</span> <span class="nf">delete_match_db</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM Match WHERE match = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">match_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">update_players_db</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">user_name</span><span class="p">,</span> <span class="n">team_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">team_id</span> <span class="o">=</span> <span class="n">get_team_id_with_teamname</span><span class="p">(</span><span class="n">team_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE Player SET name = </span><span class="si">%s</span><span class="s2">, age = </span><span class="si">%s</span><span class="s2">, team_id = </span><span class="si">%s</span><span class="s2"> WHERE user_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">player</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">team_id</span><span class="p">,</span> <span class="n">user_id</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>CRUD operations for match table implemented.</p>
+</div>
+<div class="section" id="stadium">
+<h3>stadium()<a class="headerlink" href="#stadium" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_stadiums_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM Stadium&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">stads</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stads</span>
+<span class="k">def</span> <span class="nf">insert_stadiums_db</span><span class="p">(</span><span class="n">stadium</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO STADIUM (name) VALUES(</span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">stadium</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">update_stadiums_db</span><span class="p">(</span><span class="n">stadium_old</span><span class="p">,</span> <span class="n">stadium_new</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;UPDATE Stadium SET name = </span><span class="si">%s</span><span class="s2"> WHERE name = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">stadium_new</span><span class="p">,</span> <span class="n">stadium_old</span><span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">delete_stadium_db</span><span class="p">(</span><span class="n">stadium_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM stadium WHERE name = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">stadium_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>CRUD operations for stadium table implemented.</p>
+</div>
+<div class="section" id="get-stad-id-with-stad-name">
+<h3>get_stad_id_with_stad_name()<a class="headerlink" href="#get-stad-id-with-stad-name" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_stad_id_with_stad_name</span><span class="p">(</span><span class="n">stadium_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT stadium_id FROM Stadium WHERE name = </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">stadium_name</span><span class="p">,))</span>
+        <span class="n">stad_id</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">stad_id</span>
+</pre></div>
+</div>
+<p>An extra function implemented: To get stadium id using stadium name.</p>
+</div>
+<div class="section" id="appointment">
+<h3>appointment()<a class="headerlink" href="#appointment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_appointment_db</span><span class="p">(</span><span class="n">appointment_name</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM Appointment WHERE name = </span><span class="si">%s</span><span class="s2"> &quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">appointment_name</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_appointments_db</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;select a.appointment_id, a.name, t1.name, t2.name, s.name, a.start_time, a.end_time, a.date</span>
+<span class="s2">                    from appointment as a, match as m, stadium as s, team as t1, team as t2</span>
+<span class="s2">                where (m.match_id = a.match_id AND</span>
+<span class="s2">                            a.stadium_id = s.stadium_id AND</span>
+<span class="s2">                            (( m.team1_id = t1.team_id AND m.team2_id = t2.team_id ) ) )&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">appointments</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">appointments</span>
+<span class="k">def</span> <span class="nf">insert_appointments_db</span><span class="p">(</span><span class="n">appointment</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO APPOINTMENT (name, match_id, stadium_id, start_time, end_time, date) VALUES(</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">appointment</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">match_id</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">stadium_id</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">appointment</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+<span class="k">def</span> <span class="nf">update_appointments_db</span><span class="p">(</span><span class="n">appointment_id</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; UPDATE MATCH SET</span>
+<span class="s2">                 team2_id = (select team_id from player where user_id = </span><span class="si">%s</span><span class="s2">)</span>
+<span class="s2">                 WHERE match_id = (select match_id from APPOINTMENT</span>
+<span class="s2">                 where appointment_id = </span><span class="si">%s</span><span class="s2">)&quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">appointment_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>CRUD operations for appointment table implemented.</p>
+</div>
+<div class="section" id="get-db-url">
+<h3>get_db_url()<a class="headerlink" href="#get-db-url" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_db_url</span><span class="p">():</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DATABASE_URL&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: DATABASE_URL=url python dbinit.py&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">url</span>
+</pre></div>
+</div>
+<p>Gets the database url from heroku environment variables.</p>
+</div>
+<div class="section" id="check-profile-exists">
+<h3>check_profile_exists()<a class="headerlink" href="#check-profile-exists" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_profile_exists</span><span class="p">(</span><span class="n">user_name</span><span class="p">):</span>
+    <span class="n">user_id</span> <span class="o">=</span> <span class="n">db_usr</span><span class="o">.</span><span class="n">get_user_id_with_username</span><span class="p">(</span><span class="n">user_name</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;SELECT CASE WHEN EXISTS ( SELECT * FROM Player WHERE user_id = </span><span class="si">%s</span><span class="s2"> ) &quot;</span> \
+            <span class="s2">&quot;THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">db_url</span><span class="o">.</span><span class="n">get_db_url</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;yes, exists:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;not exists:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>Checks if a profile is created for a user, using username.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="huseyin.html" class="btn btn-neutral float-right" title="Parts Implemented by Hasan Hüseyin KAÇMAZ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1969
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

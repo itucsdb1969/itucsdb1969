@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Hasan Hüseyin KAÇMAZ &mdash; ITUCSDB1969 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Parts Implemented by İhsan SOYDEMİR" href="ihsan.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1969
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#database-design">Database Design</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html">Parts Implemented by İhsan SOYDEMİR</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Hasan Hüseyin KAÇMAZ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions-in-server-py">Functions in server.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1969</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Hasan Hüseyin KAÇMAZ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/huseyin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-hasan-huseyin-kacmaz">
+<h1>Parts Implemented by Hasan Hüseyin KAÇMAZ<a class="headerlink" href="#parts-implemented-by-hasan-huseyin-kacmaz" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="functions-in-server-py">
+<h2>Functions in server.py<a class="headerlink" href="#functions-in-server-py" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="login">
+<h3>login()<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+        <span class="n">password_form</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password_form</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Username/Password can not be empty!&quot;</span><span class="p">)</span>
+        <span class="n">passwd_from_db</span> <span class="o">=</span> <span class="n">get_user_pw_with_username</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">passwd_from_db</span><span class="p">:</span>
+            <span class="n">password_form</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">password_form</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">password_form</span> <span class="o">==</span> <span class="n">passwd_from_db</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">username</span>
+                <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have successfully logged in!&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span> <span class="s2">&quot;Invalid Password Error!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span> <span class="s2">&quot;Invalid Username Error!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code block contains the login page logic.</p>
+</div>
+<div class="section" id="register-page">
+<h3>register_page()<a class="headerlink" href="#register-page" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">register_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+        <span class="n">c_password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;confirm-password&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">password</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">c_password</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;register.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Username/Password can not be empty!&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">password</span> <span class="o">!=</span> <span class="n">c_password</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;register.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Passwords do not match!&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+            <span class="n">usr</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">insert_users_db</span><span class="p">(</span><span class="n">usr</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s1">&#39;You have successfully created an account, now you can login&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UniqueViolation</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;register.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Username already exists, pick different one!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;register.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code block contains the register page logic. Every pass is first crypted using SHA256, then stored as
+hash digest in the database.</p>
+</div>
+<div class="section" id="profile-sets">
+<h3>profile_sets()<a class="headerlink" href="#profile-sets" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">profile_sets</span><span class="p">():</span>
+    <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">check_profile_exists</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]))</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span>
+        <span class="n">team_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_name&#39;</span><span class="p">]</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+        <span class="n">player</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="n">full_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">update_players_db</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">team_name</span><span class="p">)</span>
+                <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have successfully updated your player profile!&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">InvalidTextRepresentation</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;profile.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Name/Age not valid!&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">insert_players_db</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">team_name</span><span class="p">)</span>
+                <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have successfully created your player profile!&quot;</span><span class="p">)</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">InvalidTextRepresentation</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;profile.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Name/Age not valid!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;profile.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This page creates a player, if created updates this player and checks for user session.</p>
+</div>
+<div class="section" id="logout">
+<h3>logout()<a class="headerlink" href="#logout" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have successfully logged out!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This code block helps user to logout, using sessions for authentication.</p>
+</div>
+<div class="section" id="delete-player">
+<h3>delete_player()<a class="headerlink" href="#delete-player" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_player</span><span class="p">():</span>
+    <span class="n">usrname</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+    <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;You have successfully deleted your player profile!&quot;</span><span class="p">)</span>
+    <span class="n">delete_players_db</span><span class="p">(</span><span class="n">usrname</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function checks if a player exists for a user in database, then calls the delete_players_db function from database.</p>
+</div>
+<div class="section" id="my-account">
+<h3>my_account()<a class="headerlink" href="#my-account" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_account</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;my_account.html&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;new_password&#39;</span><span class="p">]</span>
+        <span class="n">c_password</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;new_password_conf&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">password</span> <span class="o">!=</span> <span class="n">c_password</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;my_account.html&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Passwords do not match!&quot;</span><span class="p">)</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">password</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Password successfully updated!&quot;</span><span class="p">)</span>
+        <span class="n">update_users_db</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">password</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete_my_account</span><span class="p">():</span>
+    <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;User successfully deleted!&quot;</span><span class="p">)</span>
+    <span class="n">delete_users_db</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">])</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;home.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This functions helps users to change/update passwords, and delete accounts</p>
+</div>
+<div class="section" id="upload-image">
+<h3>upload_image()<a class="headerlink" href="#upload-image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">upload_image</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="o">==</span><span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">files</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;my_account.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function is partially implemented for users to insert a profile picture for themselves.</p>
+</div>
+<div class="section" id="teams">
+<h3>teams()<a class="headerlink" href="#teams" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">all_teams_page</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_name&#39;</span><span class="p">]:</span>
+            <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Team name can not be empty!&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">team</span> <span class="o">=</span> <span class="n">Team</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_name&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;rating&#39;</span><span class="p">],</span> <span class="s2">&quot;yes&quot;</span><span class="p">)</span>
+            <span class="n">insert_teams_db</span><span class="p">(</span><span class="n">team</span><span class="p">)</span>
+            <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Team successfully added!&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UniqueViolation</span><span class="p">:</span>
+            <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Team name must be unique!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;teams.html&quot;</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete_team</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">team_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;delete_team&#39;</span><span class="p">]</span>
+        <span class="n">delete_team_db</span><span class="p">(</span><span class="n">team_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;teams&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update_team</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">old_team_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;old_team_name&#39;</span><span class="p">]</span>
+        <span class="n">new_team_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;new_team_name&#39;</span><span class="p">]</span>
+        <span class="n">update_teams_db</span><span class="p">(</span><span class="n">new_team_name</span><span class="p">,</span> <span class="n">old_team_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;teams&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These 3 function is implemented for CRUD operation for team table.</p>
+</div>
+<div class="section" id="team">
+<h3>team()<a class="headerlink" href="#team" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">team</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">team_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_id&#39;</span><span class="p">]</span>
+        <span class="n">players</span> <span class="o">=</span> <span class="n">get_team_players_with_team_id</span><span class="p">(</span><span class="n">team_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;team.html&quot;</span><span class="p">,</span> <span class="n">infos</span><span class="o">=</span><span class="n">players</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;team.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function lists all players for a team.</p>
+</div>
+<div class="section" id="matches">
+<h3>matches()<a class="headerlink" href="#matches" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">matches</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">Match</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_home&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;team_away&#39;</span><span class="p">])</span>
+        <span class="n">match_id</span> <span class="o">=</span> <span class="n">insert_match_db</span><span class="p">(</span><span class="n">match</span><span class="p">)</span>
+        <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+        <span class="n">stadium_id</span> <span class="o">=</span> <span class="n">get_stad_id_with_stad_name</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;stadium_name&#39;</span><span class="p">])</span>
+        <span class="n">appointment</span> <span class="o">=</span> <span class="n">Appointment</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;appointment_name&#39;</span><span class="p">],</span> <span class="n">match_id</span><span class="p">,</span> <span class="n">stadium_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;start_time&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;end_time&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;match_date&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;appointment_name&#39;</span><span class="p">]:</span>
+            <span class="n">matchs</span> <span class="o">=</span> <span class="n">get_appointments_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;matches.html&quot;</span><span class="p">,</span> <span class="n">matchs</span><span class="o">=</span><span class="n">matchs</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Appointment name can not be empty!&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">insert_appointments_db</span><span class="p">(</span><span class="n">appointment</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Appointment successfully created!&quot;</span><span class="p">)</span>
+            <span class="n">matchs</span> <span class="o">=</span> <span class="n">get_appointments_db</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UniqueViolation</span><span class="p">:</span>
+            <span class="n">matchs</span> <span class="o">=</span> <span class="n">get_appointments_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;matches.html&quot;</span><span class="p">,</span> <span class="n">matchs</span><span class="o">=</span><span class="n">matchs</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Appointment name already exists!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;matches.html&quot;</span><span class="p">,</span> <span class="n">matchs</span><span class="o">=</span><span class="n">matchs</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+        <span class="n">matchs</span> <span class="o">=</span> <span class="n">get_appointments_db</span><span class="p">()</span>
+        <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;matches.html&quot;</span><span class="p">,</span> <span class="n">matchs</span><span class="o">=</span><span class="n">matchs</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete_matches</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;delete_match&#39;</span><span class="p">]</span>
+        <span class="n">delete_appointment_db</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;matches&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">edit_matches</span><span class="p">():</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;user_name&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">get_player_with_username</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+        <span class="n">update_appointments_db</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;match_id&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;user_name&#39;</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">teams</span> <span class="o">=</span> <span class="n">get_teams_db</span><span class="p">()</span>
+        <span class="n">matchs</span> <span class="o">=</span> <span class="n">get_appointments_db</span><span class="p">()</span>
+        <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;matches.html&quot;</span><span class="p">,</span> <span class="n">matchs</span><span class="o">=</span><span class="n">matchs</span><span class="p">,</span> <span class="n">teams</span><span class="o">=</span><span class="n">teams</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;You need to create a player profile!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;matches&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These 3 function is implemented for calling CRUD operation functions for appointment table, also reflects match and team tables.</p>
+</div>
+<div class="section" id="stadiums">
+<h3>stadiums()<a class="headerlink" href="#stadiums" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stadiums</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;GET&#39;</span><span class="p">:</span>
+        <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;stadium_name&#39;</span><span class="p">]:</span>
+            <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Stadium name can not be empty!&quot;</span><span class="p">)</span>
+        <span class="n">stadium_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;stadium_name&#39;</span><span class="p">]</span>
+        <span class="n">stadium</span> <span class="o">=</span> <span class="n">Stadium</span><span class="p">(</span><span class="n">stadium_name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">insert_stadiums_db</span><span class="p">(</span><span class="n">stadium</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Stadium successfully added!&quot;</span><span class="p">)</span>
+            <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UniqueViolation</span><span class="p">:</span>
+            <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="s2">&quot;Stadium name must be different!&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete_stadiums</span><span class="p">():</span>
+    <span class="n">stadium_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;stadium_name&#39;</span><span class="p">]</span>
+    <span class="n">delete_stadium_db</span><span class="p">(</span><span class="n">stadium_name</span><span class="p">)</span>
+    <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+    <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Stadium &quot;</span> <span class="o">+</span> <span class="n">stadium_name</span> <span class="o">+</span> <span class="s2">&quot; successfully deleted!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update_stadiums</span><span class="p">():</span>
+    <span class="n">new_stad_name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;new_stadium_name&#39;</span><span class="p">]</span>
+    <span class="n">update_stadiums_db</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;old_stadium_name&#39;</span><span class="p">],</span> <span class="n">new_stad_name</span><span class="p">)</span>
+    <span class="n">stadiums</span> <span class="o">=</span> <span class="n">get_stadiums_db</span><span class="p">()</span>
+    <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Stadium name successfully updated!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;stadiums.html&quot;</span><span class="p">,</span> <span class="n">stadiums</span><span class="o">=</span><span class="n">stadiums</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These 3 function is implemented for calling CRUD operation functions for stadium table.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="ihsan.html" class="btn btn-neutral float-left" title="Parts Implemented by İhsan SOYDEMİR" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1969
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

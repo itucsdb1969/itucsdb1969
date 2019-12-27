@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Guide &mdash; ITUCSDB1969 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by İhsan SOYDEMİR" href="ihsan.html" />
+    <link rel="prev" title="User" href="../user/user.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1969
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-design">Database Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html">Parts Implemented by İhsan SOYDEMİR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html">Parts Implemented by Hasan Hüseyin KAÇMAZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1969</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-guide">
+<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="database-design">
+<h2>Database Design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h2>
+<p>Our database consists of 6 main tables.
+These tables have at least 1 primary key, 5 non-key attributes.</p>
+<p><strong>Our Main tables: Users, Team, Player, Match, Stadium, Appointment</strong></p>
+<div class="figure align-default">
+<img alt="../_images/tables_diagram.jpg" src="../_images/tables_diagram.jpg" />
+</div>
+<p><strong>Main Tables</strong></p>
+<p>Every user has user_id as a primary key, name as a unique attribute, password, email, is_active, and is_admin.</p>
+<p><em>user_id, name, password, email, is_active, is_admin</em></p>
+<p>Each player has a player_id as a primary key, team_id that references Team(team_id), user_id that references Users(user_id), name, rating, age, country, phone_number.</p>
+<p><em>player_id, team_id, user_id, name, rating, age, country, phone_number</em></p>
+<p>Each team has a team_id as a primary key, name as a unique attribute, rating, created_at, max_player_number, is_available.</p>
+<p><em>team_id, name, rating, created_at, max_player_number, is_available</em></p>
+<p>Each match has a match_id as a primary key, team1_id references Team(team_id), team2_id references Team(team_id), created_at, updated_at, date, referee, length.</p>
+<p><em>match_id, team1_id, team2_id, created_at, updated_at, date, referee, length</em></p>
+<p>Each stadium has a stadium_id as a primary key, name as a unique attribute, city, created_at, is_available, rating.</p>
+<p><em>stadium_id, name, city, created_at, is_available, and rating</em></p>
+<p>Each appointment has a appointment_id which is the primary key, match_id that references Match(match_id), stadium_id references Stadium(stadium_id).</p>
+<p><em>appointment_id, name, match_id, stadium_id, start_time, end_time, date, created_at</em></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ihsan.html">Parts Implemented by İhsan SOYDEMİR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ihsan.html#functions-in-db">Functions in db</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#user">user()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#player">player()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#team">team()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#team-extras">team_extras()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#match">match()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#stadium">stadium()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#get-stad-id-with-stad-name">get_stad_id_with_stad_name()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#appointment">appointment()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#get-db-url">get_db_url()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ihsan.html#check-profile-exists">check_profile_exists()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="huseyin.html">Parts Implemented by Hasan Hüseyin KAÇMAZ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="huseyin.html#functions-in-server-py">Functions in server.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#login">login()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#register-page">register_page()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#profile-sets">profile_sets()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#logout">logout()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#delete-player">delete_player()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#my-account">my_account()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#upload-image">upload_image()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#teams">teams()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#team">team()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#matches">matches()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="huseyin.html#stadiums">stadiums()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ihsan.html" class="btn btn-neutral float-right" title="Parts Implemented by İhsan SOYDEMİR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../user/user.html" class="btn btn-neutral float-left" title="User" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1969
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
