@@ -16,7 +16,8 @@ Let the competition begin.
 
 Stay tuned.
 
-You can find our application from: itucsdb1969.herokuapp.com/
+
+You can find our application from: http://itucsdb1969.herokuapp.com/
 
 Also we are working with open-source spirit. So if you want to contribute: https://github.com/itucsdb1969/itucsdb1969/
 
