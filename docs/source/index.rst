@@ -10,7 +10,9 @@ Welcome to itucsdb1969's documentation!
 
 MatchMe!, where you can easily find your opposite team, and find new teammates or new teams. 
 In addition, you can see the availability of stadiums and teams which are compatible for new games. 
-In upcoming version, we are considering to develop new league system for our application. So let the competition begin.
+
+In upcoming version, we are considering to develop new league system for our application. 
+Let the competition begin.
 
 Stay tuned.
 
