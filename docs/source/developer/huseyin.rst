@@ -32,6 +32,7 @@ This code block contains the login page logic.
 register_page()
 ^^^^^^^^
 .. code-block:: python
+
     def register_page():
         if request.method == 'POST':
             username = request.form['username']
@@ -57,6 +58,7 @@ hash digest in the database.
 profile_sets()
 ^^^^^^^^
 .. code-block:: python
+
     def profile_sets():
         teams = get_teams_db()
         status = int(check_profile_exists(session['username']))
@@ -86,6 +88,7 @@ This page creates a player, if created updates this player and checks for user s
 logout()
 ^^^^^^^^
 .. code-block:: python
+
     def logout():
         session.pop('username', None)
         flash("You have successfully logged out!")
@@ -96,6 +99,7 @@ This code block helps user to logout, using sessions for authentication.
 delete_player()
 ^^^^^^^^
 .. code-block:: python
+
     def delete_player():
         usrname = session['username']
         flash("You have successfully deleted your player profile!")
@@ -107,6 +111,7 @@ This function checks if a player exists for a user in database, then calls the d
 my_account()
 ^^^^^^^^
 .. code-block:: python
+
     def my_account():
         if request.method == 'GET':
             return render_template("my_account.html")
@@ -131,6 +136,7 @@ This functions helps users to change/update passwords, and delete accounts
 upload_image()
 ^^^^^^^^
 .. code-block:: python
+
     def upload_image():
         if request.method=='POST':
             if request.files:
@@ -144,6 +150,7 @@ This function is partially implemented for users to insert a profile picture for
 teams()
 ^^^^^^^^
 .. code-block:: python
+
     def all_teams_page():
         if request.method == 'POST':
             if not request.form['team_name']:
@@ -180,6 +187,7 @@ These 3 function is implemented for CRUD operation for team table.
 team()
 ^^^^^^^^
 .. code-block:: python
+
     def team():
         if request.method == 'POST':
             team_id = request.form['team_id']
@@ -196,6 +204,7 @@ This function lists all players for a team.
 matches()
 ^^^^^^^^
 .. code-block:: python
+
     def matches():
         if request.method == 'POST':
             teams = get_teams_db()
@@ -245,6 +254,7 @@ These 3 function is implemented for calling CRUD operation functions for appoint
 stadiums()
 ^^^^^^^^
 .. code-block:: python
+
     def stadiums():
         if request.method == 'GET':
             stadiums = get_stadiums_db()
