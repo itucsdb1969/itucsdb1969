@@ -7,6 +7,7 @@ Functions in server.py
 login()
 ^^^^^^^^
 .. code-block:: python
+
     def login():
         if request.method == "POST":
             username = request.form['username']
